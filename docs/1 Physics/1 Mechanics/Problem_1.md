@@ -146,7 +146,7 @@ plt.title('Projectile Trajectory (v0 = 20 m/s, θ = 45°)')
 plt.grid(True)
 plt.show()
 ```
-[simulation 1](simulation.html)
+[simulation 1](simulationnss.html)
 ### Output Description
 
 1. **Range Plot**: Shows range vs. angle for $v_0 = 10, 20, 30 \, \text{m/s}$. Each curve peaks at $\theta = 45^\circ$, with higher $v_0$ yielding larger ranges.
