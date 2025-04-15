@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projectile Motion Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Projectile Motion Simulation</h1>
+        <p>This document presents a Python script that simulates projectile motion, calculating the range as a function of the angle of projection and visualizing a sample trajectory. The simulation assumes no air resistance and constant gravitational acceleration.</p>
+
+        <h2>Python Code</h2>
+        <p>The following code uses NumPy for calculations and Matplotlib for plotting. It computes the range for different initial velocities and plots a trajectory for a specific case.</p>
+        <pre><code>
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+g = 9.81  # m/s^2
+v0_values = [10, 20, 30]  # Initial velocities (m/s)
+theta_deg = np.arange(0, 91, 1)  # Angles from 0 to 90 degrees
+theta_rad = np.deg2rad(theta_deg)
+
+# Range function
+def range_projectile(v0, theta_rad, g=9.81):
+    return (v0**2 * np.sin(2 * theta_rad)) / g
+
+# Plot range vs angle for different v0
+plt.figure(figsize=(10, 6))
+for v0 in v0_values:
+    R = range_projectile(v0, theta_rad)
+    plt.plot(theta_deg, R, label=f'v0 = {v0} m/s')
+
+plt.xlabel('Angle of Projection (degrees)')
+plt.ylabel('Range (m)')
+plt.title('Range vs. Angle of Projection')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Simulate a single trajectory (example: v0 = 20 m/s, theta = 45 deg)
+v0 = 20
+theta = np.deg2rad(45)
+t_flight = (2 * v0 * np.sin(theta)) / g
+t = np.linspace(0, t_flight, 100)
+x = v0 * np.cos(theta) * t
+y = v0 * np.sin(theta) * t - 0.5 * g * t**2
+
+plt.figure(figsize=(10, 6))
+plt.plot(x, y)
+plt.xlabel('x (m)')
+plt.ylabel('y (m)')
+plt.title('Projectile Trajectory (v0 = 20 m/s, θ = 45°)')
+plt.grid(True)
+plt.show()
+        </code></pre>
+
+        <h2>Explanation</h2>
+        <h3>Range Calculation</h3>
+        <p>The function <code>range_projectile</code> computes the horizontal range using the formula:</p>
+        <p>\[ R = \frac{v_0^2 \sin(2\theta)}{g} \]</p>
+        <p>where:</p>
+        <ul>
+            <li>\( v_0 \): Initial velocity (m/s)</li>
+            <li>\( \theta \): Angle of projection (radians)</li>
+            <li>\( g \): Gravitational acceleration (9.81 m/s²)</li>
+        </ul>
+        <p>The script plots the range for initial velocities of 10, 20, and 30 m/s across angles from 0° to 90°.</p>
+
+        <h3>Trajectory Simulation</h3>
+        <p>For a specific case (\( v_0 = 20 \, \text{m/s} \), \( \theta = 45^\circ \)), the script calculates the time of flight and generates the parabolic trajectory using the equations:</p>
+        <p>\[ x(t) = v_0 \cos(\theta) t \]</p>
+        <p>\[ y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2 \]</p>
+
+        <h2>Expected Output</h2>
+        <p>The script produces two plots:</p>
+        <ol>
+            <li><strong>Range vs. Angle</strong>: A graph showing range vs. angle of projection for different initial velocities. Each curve peaks at 45°, confirming the theoretical maximum range.</li>
+            <li><strong>Trajectory</strong>: A parabolic path for \( v_0 = 20 \, \text{m/s} \), \( \theta = 45^\circ \), showing the projectile’s motion from launch to landing.</li>
+        </ol>
+        <p><em>Note: Actual plots are not embedded in this HTML as they require a Python environment to render. Run the code in a Python environment with Matplotlib to view the graphs.</em></p>
+
+        <h2>Dependencies</h2>
+        <ul>
+            <li>Python 3.x</li>
+            <li>NumPy</li>
+            <li>Matplotlib</li>
+        </ul>
+        <p>Install dependencies using:</p>
+        <pre><code>pip install numpy matplotlib</code></pre>
+    </div>
+</body>
+</html>
