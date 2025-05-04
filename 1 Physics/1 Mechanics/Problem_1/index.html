@@ -244,20 +244,20 @@
 <p>Varying these parameters generates different trajectories, from flat, short paths (low <span class="arithmatex">\(\theta\)</span>, small <span class="arithmatex">\(v_0\)</span>) to high, long arcs (near <span class="arithmatex">\(\theta = 45^\circ\)</span>, large <span class="arithmatex">\(v_0\)</span>).</p>
 <h3 id="range-derivation">Range Derivation</h3>
 <p>The <strong>range</strong> is the horizontal distance traveled when the projectile returns to <span class="arithmatex">\(y = 0\)</span>. Set <span class="arithmatex">\(y(t) = 0\)</span>:</p>
-<div class="arithmatex">\[ (v_0 \sin \theta) t - \frac{1}{2} g t^2 = 0 \]</div>
+<p><span class="arithmatex">\((v_0 \sin \theta) t - \frac{1}{2} g t^2 = 0\)</span></p>
 <p>Factor out <span class="arithmatex">\(t\)</span>:</p>
-<div class="arithmatex">\[ t \left( v_0 \sin \theta - \frac{1}{2} g t \right) = 0 \]</div>
+<p><span class="arithmatex">\(t \left( v_0 \sin \theta - \frac{1}{2} g t \right) = 0\)</span></p>
 <p>Solutions are <span class="arithmatex">\(t = 0\)</span> (launch) and:</p>
-<div class="arithmatex">\[ t = \frac{2 v_0 \sin \theta}{g} \]</div>
+<p><span class="arithmatex">\(t = \frac{2 v_0 \sin \theta}{g}\)</span></p>
 <p>Substitute into <span class="arithmatex">\(x(t)\)</span>:</p>
-<div class="arithmatex">\[ R = x\left( \frac{2 v_0 \sin \theta}{g} \right) = (v_0 \cos \theta) \cdot \frac{2 v_0 \sin \theta}{g} = \frac{2 v_0^2 \sin \theta \cos \theta}{g} \]</div>
+<p><span class="arithmatex">\(R = x\left( \frac{2 v_0 \sin \theta}{g} \right) = (v_0 \cos \theta) \cdot \frac{2 v_0 \sin \theta}{g} = \frac{2 v_0^2 \sin \theta \cos \theta}{g}\)</span></p>
 <p>Using the identity <span class="arithmatex">\(\sin 2\theta = 2 \sin \theta \cos \theta\)</span>:</p>
-<div class="arithmatex">\[ R = \frac{v_0^2 \sin 2\theta}{g} \]</div>
+<p><span class="arithmatex">\(R = \frac{v_0^2 \sin 2\theta}{g}\)</span></p>
 <p>This shows the range depends on <span class="arithmatex">\(\theta\)</span>, <span class="arithmatex">\(v_0\)</span>, and <span class="arithmatex">\(g\)</span>.</p>
 <h2 id="2-analysis-of-the-range">2. Analysis of the Range</h2>
 <h3 id="dependence-on-angle-of-projection">Dependence on Angle of Projection</h3>
 <p>The term <span class="arithmatex">\(\sin 2\theta\)</span> governs the angular dependence. Since <span class="arithmatex">\(\sin 2\theta\)</span> peaks at <span class="arithmatex">\(2\theta = 90^\circ\)</span>, or <span class="arithmatex">\(\theta = 45^\circ\)</span>, the maximum range occurs at:</p>
-<div class="arithmatex">\[ R_{\text{max}} = \frac{v_0^2}{g} \quad (\text{when } \sin 2\theta = 1) \]</div>
+<p><span class="arithmatex">\(R_{\text{max}} = \frac{v_0^2}{g} \quad (\text{when } \sin 2\theta = 1)\)</span></p>
 <p>For <span class="arithmatex">\(\theta &lt; 45^\circ\)</span> or <span class="arithmatex">\(\theta &gt; 45^\circ\)</span>, the range decreases symmetrically, as <span class="arithmatex">\(\sin 2(90^\circ - \theta) = \sin 2\theta\)</span>. Thus, angles like <span class="arithmatex">\(30^\circ\)</span> and <span class="arithmatex">\(60^\circ\)</span> yield identical ranges.</p>
 <h3 id="influence-of-other-parameters">Influence of Other Parameters</h3>
 <ul>
@@ -274,13 +274,13 @@
 <ul>
 <li><strong>Uneven Terrain</strong>: If the landing height differs from the launch height, solve <span class="arithmatex">\(y(t) = y_{\text{land}}\)</span>. For a height difference <span class="arithmatex">\(h\)</span>:</li>
 </ul>
-<div class="arithmatex">\[ y(t) = (v_0 \sin \theta) t - \frac{1}{2} g t^2 = h \]</div>
+<p><span class="arithmatex">\(y(t) = (v_0 \sin \theta) t - \frac{1}{2} g t^2 = h\)</span></p>
 <p>This yields a quadratic equation for <span class="arithmatex">\(t\)</span>, and the range becomes:</p>
-<div class="arithmatex">\[ R = (v_0 \cos \theta) t_{\text{land}} \]</div>
+<p><span class="arithmatex">\(R = (v_0 \cos \theta) t_{\text{land}}\)</span></p>
 <ul>
 <li><strong>Air Resistance</strong>: Introduce a drag force proportional to velocity or its square, modifying the differential equations to:</li>
 </ul>
-<div class="arithmatex">\[ m \ddot{x} = -k \dot{x}, \quad m \ddot{y} = -m g - k \dot{y} \]</div>
+<p><span class="arithmatex">\(m \ddot{x} = -k \dot{x}, \quad m \ddot{y} = -m g - k \dot{y}\)</span></p>
 <p>These require numerical solutions, as analytical forms are complex.</p>
 <h2 id="4-implementation">4. Implementation</h2>
 <p>Below is a Python script to simulate projectile motion and visualize the range as a function of <span class="arithmatex">\(\theta\)</span>.</p>
@@ -326,7 +326,7 @@ plt.title('Projectile Trajectory (v0 = 20 m/s, θ = 45°)')
 plt.grid(True)
 plt.show()
 </code></pre>
-<p><a href="../simulationnss.html">simulation 1</a></p>
+<p><img alt="alt text" src="../image.png"/></p>
 <h3 id="output-description">Output Description</h3>
 <ol>
 <li><strong>Range Plot</strong>: Shows range vs. angle for <span class="arithmatex">\(v_0 = 10, 20, 30 \, \text{m/s}\)</span>. Each curve peaks at <span class="arithmatex">\(\theta = 45^\circ\)</span>, with higher <span class="arithmatex">\(v_0\)</span> yielding larger ranges.</li>
