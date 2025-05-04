@@ -40,23 +40,23 @@ Varying these parameters generates different trajectories, from flat, short path
 
 The **range** is the horizontal distance traveled when the projectile returns to $y = 0$. Set $y(t) = 0$:
 
-\[ (v_0 \sin \theta) t - \frac{1}{2} g t^2 = 0 \]
+$(v_0 \sin \theta) t - \frac{1}{2} g t^2 = 0$
 
 Factor out $t$:
 
-\[ t \left( v_0 \sin \theta - \frac{1}{2} g t \right) = 0 \]
+$t \left( v_0 \sin \theta - \frac{1}{2} g t \right) = 0$
 
 Solutions are $t = 0$ (launch) and:
 
-\[ t = \frac{2 v_0 \sin \theta}{g} \]
+$t = \frac{2 v_0 \sin \theta}{g}$
 
 Substitute into $x(t)$:
 
-\[ R = x\left( \frac{2 v_0 \sin \theta}{g} \right) = (v_0 \cos \theta) \cdot \frac{2 v_0 \sin \theta}{g} = \frac{2 v_0^2 \sin \theta \cos \theta}{g} \]
+$R = x\left( \frac{2 v_0 \sin \theta}{g} \right) = (v_0 \cos \theta) \cdot \frac{2 v_0 \sin \theta}{g} = \frac{2 v_0^2 \sin \theta \cos \theta}{g}$
 
 Using the identity $\sin 2\theta = 2 \sin \theta \cos \theta$:
 
-\[ R = \frac{v_0^2 \sin 2\theta}{g} \]
+$R = \frac{v_0^2 \sin 2\theta}{g}$
 
 This shows the range depends on $\theta$, $v_0$, and $g$.
 
@@ -66,7 +66,7 @@ This shows the range depends on $\theta$, $v_0$, and $g$.
 
 The term $\sin 2\theta$ governs the angular dependence. Since $\sin 2\theta$ peaks at $2\theta = 90^\circ$, or $\theta = 45^\circ$, the maximum range occurs at:
 
-\[ R_{\text{max}} = \frac{v_0^2}{g} \quad (\text{when } \sin 2\theta = 1) \]
+$R_{\text{max}} = \frac{v_0^2}{g} \quad (\text{when } \sin 2\theta = 1)$
 
 For $\theta < 45^\circ$ or $\theta > 45^\circ$, the range decreases symmetrically, as $\sin 2(90^\circ - \theta) = \sin 2\theta$. Thus, angles like $30^\circ$ and $60^\circ$ yield identical ranges.
 
@@ -87,15 +87,15 @@ The idealized model applies to:
 
 - **Uneven Terrain**: If the landing height differs from the launch height, solve $y(t) = y_{\text{land}}$. For a height difference $h$:
 
-\[ y(t) = (v_0 \sin \theta) t - \frac{1}{2} g t^2 = h \]
+$y(t) = (v_0 \sin \theta) t - \frac{1}{2} g t^2 = h$
 
 This yields a quadratic equation for $t$, and the range becomes:
 
-\[ R = (v_0 \cos \theta) t_{\text{land}} \]
+$R = (v_0 \cos \theta) t_{\text{land}}$
 
 - **Air Resistance**: Introduce a drag force proportional to velocity or its square, modifying the differential equations to:
 
-\[ m \ddot{x} = -k \dot{x}, \quad m \ddot{y} = -m g - k \dot{y} \]
+$m \ddot{x} = -k \dot{x}, \quad m \ddot{y} = -m g - k \dot{y}$
 
 These require numerical solutions, as analytical forms are complex.
 
@@ -146,7 +146,8 @@ plt.title('Projectile Trajectory (v0 = 20 m/s, θ = 45°)')
 plt.grid(True)
 plt.show()
 ```
-[simulation 1](simulationnss.html)
+![alt text](image.png)
+
 ### Output Description
 
 1. **Range Plot**: Shows range vs. angle for $v_0 = 10, 20, 30 \, \text{m/s}$. Each curve peaks at $\theta = 45^\circ$, with higher $v_0$ yielding larger ranges.
