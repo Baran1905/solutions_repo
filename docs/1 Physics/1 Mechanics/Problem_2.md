@@ -11,7 +11,7 @@ $theta(t): Angular displacement (rad)
 (\omega_0 = \sqrt{g/l}): Natural frequency (rad/s), (g = 9.81 , \text{m/s}^2), (l): pendulum length (m)
 (A): Driving amplitude (rad/s²)
 (\omega): Driving frequency (rad/s)
-(t): Time (s)
+(t): Time (s)$
 
 Small-Angle Approximation
 For small (\theta), (\sin(\theta) \approx \theta), simplifying to:
