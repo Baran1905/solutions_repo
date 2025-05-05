@@ -203,16 +203,12 @@
 <p>Driving frequency (<span class="arithmatex">\(\omega\)</span>): Near <span class="arithmatex">\(\omega_0\)</span>, resonance; far from <span class="arithmatex">\(\omega_0\)</span>, quasiperiodic or chaotic motion.</p>
 <p>Transition to Chaos</p>
 <p>The nonlinear <span class="arithmatex">\(\sin(\theta)\)</span> term drives transitions from periodic (synchronized with driving) to chaotic motion (sensitive to initial conditions). Phase portraits show loops (periodic) or tangled paths (chaotic). Poincaré sections display few points (periodic) or scattered clouds (chaotic).</p>
-<ol>
-<li>Practical Applications</li>
-</ol>
+<h3 id="3-practical-applications">3. Practical Applications</h3>
 <p>Energy harvesting: Oscillatory motion in piezoelectric devices generates electricity.</p>
 <p>Structural engineering: Models vibrations in bridges under periodic forces.</p>
 <p>Electronics: Driven RLC circuits, analogous to the pendulum, used in signal processing.</p>
 <p>Biomechanics: Describes gait or robotic motion under periodic forcing.</p>
-<ol>
-<li>Implementation</li>
-</ol>
+<h3 id="4-implementation">4. Implementation</h3>
 <p>The Python script below simulates the pendulum using Runge-Kutta, visualizing time series, phase portraits, Poincaré sections, resonance curve, and bifurcation diagram.</p>
 <p>import numpy as np
 import matplotlib.pyplot as plt
@@ -315,11 +311,11 @@ plt.show()</p>
 <p>Small-angle approximation fails for large <span class="arithmatex">\(\theta\)</span>.</p>
 <p>Linear damping oversimplifies real friction.</p>
 <p>Assumes periodic forcing, limiting real-world applicability.</p>
-<p>Extensions</p>
+<p><strong>Extensions</strong></p>
 <p>Model nonlinear damping (e.g., <span class="arithmatex">\(|\dot{\theta}|\dot{\theta}\)</span>).</p>
 <p>Include non-periodic or random forcing.</p>
 <p>Simulate coupled pendulums for complex interactions.</p>
-<p>Conclusion</p>
+<p><strong>Conclusion</strong></p>
 <p>The forced damped pendulum, governed by <span class="arithmatex">\(\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)\)</span>, exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.</p>
 </div>
 </div><footer>
