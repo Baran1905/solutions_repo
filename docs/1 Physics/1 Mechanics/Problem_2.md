@@ -70,7 +70,7 @@ $$ D = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}} $$
 
 Resonance occurs when $\omega \approx \omega_0$, maximizing $D$. Damping ($\beta > 0$) prevents infinite amplitude, shifting the peak slightly. This amplifies energy transfer, increasing oscillation amplitude.
 
-###2. Analysis of Dynamics
+### 2. Analysis of Dynamics
 
 Parameter Effects
 
@@ -92,7 +92,7 @@ Transition to Chaos
 
 The nonlinear $\sin(\theta)$ term drives transitions from periodic (synchronized with driving) to chaotic motion (sensitive to initial conditions). Phase portraits show loops (periodic) or tangled paths (chaotic). Poincaré sections display few points (periodic) or scattered clouds (chaotic).
 
-3. Practical Applications
+### 3. Practical Applications
 
 
 
@@ -112,7 +112,7 @@ Electronics: Driven RLC circuits, analogous to the pendulum, used in signal proc
 
 Biomechanics: Describes gait or robotic motion under periodic forcing.
 
-4. Implementation
+### 4. Implementation
 
 The Python script below simulates the pendulum using Runge-Kutta, visualizing time series, phase portraits, Poincaré sections, resonance curve, and bifurcation diagram.
 
@@ -262,7 +262,7 @@ Linear damping oversimplifies real friction.
 
 Assumes periodic forcing, limiting real-world applicability.
 
-Extensions
+**Extensions**
 
 
 
@@ -278,6 +278,6 @@ Include non-periodic or random forcing.
 
 Simulate coupled pendulums for complex interactions.
 
-Conclusion
+**Conclusion**
 
 The forced damped pendulum, governed by $\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)$, exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.
