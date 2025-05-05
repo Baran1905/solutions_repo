@@ -1,54 +1,121 @@
-**Investigating the Dynamics of a Forced Damped Pendulum**
+Investigating the Dynamics of a Forced Damped Pendulum
 
-### 1. Theoretical Foundation
+1. Theoretical Foundation
+
 Governing Equation
+
 The motion of a forced damped pendulum is governed by:
-$ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin$theta) = A\cos$omega t)$
+
+$$ \ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t) $$
+
 where:
 
-$theta(t): Angular displacement (rad)$
-$$beta): Damping coefficient (s⁻¹)$
-$$omega_0 = \sqrt{g/l}): Natural frequency (rad/s), (g = 9.81 , \text{m/s}^2), (l): pendulum length (m)$
-$(A): Driving amplitude (rad/s²)$
-$$omega): Driving frequency (rad/s)$
-$(t): Time (s)$
 
-# Small-Angle Approximation
 
-For small$theta,$sin$theta) \approx \theta, simplifying to:$
-$ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\theta = A\cos$omega t$
-This linear ODE has a solution combining homogeneous ($theta_h) and particular ($theta_p) parts:
 
-Homogeneous solution (underdamped,$beta < \omega_0):
 
-$theta_h(t) = e^{-\beta t} \left( C_1 \cos$omega_d t) + C_2 \sin$omega_d t \right, \quad \omega_d = \sqrt{\omega_0^2 - \beta^2}
+$\theta(t)$: Angular displacement (rad)
 
-# Particular solution:
 
-Assume$theta_p(t) = D_1 \cos$omega t + D_2 \sin$omega t. Solving:
-[D_1 = \frac{A$omega_0^2 - \omega^2}$omega_0^2 - \omega^2)^2 + (2\beta\omega)^2, \quad D_2 = \frac{2A\beta\omega}{$omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}
+
+$\beta$: Damping coefficient (s⁻¹)
+
+
+
+$\omega_0 = \sqrt{g/l}$: Natural frequency (rad/s), $g = 9.81 , \text{m/s}^2$, $l$: pendulum length (m)
+
+
+
+$A$: Driving amplitude (rad/s²)
+
+
+
+$\omega$: Driving frequency (rad/s)
+
+
+
+$t$: Time (s)
+
+Small-Angle Approximation
+
+For small $\theta$, $\sin(\theta) \approx \theta$, simplifying to:
+
+$$ \ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\theta = A\cos(\omega t) $$
+
+This linear ODE has a solution combining homogeneous ($\theta_h$) and particular ($\theta_p$) parts:
+
+
+
+
+
+Homogeneous solution (underdamped, $\beta < \omega_0$):
+
+$$ \theta_h(t) = e^{-\beta t} \left( C_1 \cos(\omega_d t) + C_2 \sin(\omega_d t) \right), \quad \omega_d = \sqrt{\omega_0^2 - \beta^2} $$
+
+
+
+
+
+Particular solution:
+
+Assume $\theta_p(t) = D_1 \cos(\omega t) + D_2 \sin(\omega t)$. Solving:
+
+$$ D_1 = \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}, \quad D_2 = \frac{2A\beta\omega}{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2} $$
+
 Steady-state amplitude:
-[D = \frac{A}\sqrt$omega_0^2 - \omega^2)^2 + (2\beta\omega)^2
+
+$$ D = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}} $$
+
 Resonance
-Resonance occurs when$omega \approx \omega_0, maximizing (D). Damping ($beta > 0) prevents infinite amplitude, shifting the peak slightly. This amplifies energy transfer, increasing oscillation amplitude.
-### 2. Analysis of Dynamics
+
+Resonance occurs when $\omega \approx \omega_0$, maximizing $D$. Damping ($\beta > 0$) prevents infinite amplitude, shifting the peak slightly. This amplifies energy transfer, increasing oscillation amplitude.
+
+2. Analysis of Dynamics
+
 Parameter Effects
 
-Damping ($beta)): High$beta suppresses amplitude and chaos; low$beta allows complex dynamics.
-Driving amplitude ((A)): Large (A) induces nonlinearity, potentially chaotic motion.
-Driving frequency ($omega)): Near$omega_0, resonance; far from$omega_0, quasiperiodic or chaotic motion.
+
+
+
+
+Damping ($\beta$): High $\beta$ suppresses amplitude and chaos; low $\beta$ allows complex dynamics.
+
+
+
+Driving amplitude ($A$): Large $A$ induces nonlinearity, potentially chaotic motion.
+
+
+
+Driving frequency ($\omega$): Near $\omega_0$, resonance; far from $\omega_0$, quasiperiodic or chaotic motion.
 
 Transition to Chaos
-The nonlinear$sin$theta) term drives transitions from periodic (synchronized with driving) to chaotic motion (sensitive to initial conditions). Phase portraits show loops (periodic) or tangled paths (chaotic). Poincaré sections display few points (periodic) or scattered clouds (chaotic).
-### 3. Practical Applications
+
+The nonlinear $\sin(\theta)$ term drives transitions from periodic (synchronized with driving) to chaotic motion (sensitive to initial conditions). Phase portraits show loops (periodic) or tangled paths (chaotic). Poincaré sections display few points (periodic) or scattered clouds (chaotic).
+
+3. Practical Applications
+
+
+
+
 
 Energy harvesting: Oscillatory motion in piezoelectric devices generates electricity.
+
+
+
 Structural engineering: Models vibrations in bridges under periodic forces.
+
+
+
 Electronics: Driven RLC circuits, analogous to the pendulum, used in signal processing.
+
+
+
 Biomechanics: Describes gait or robotic motion under periodic forcing.
 
-### 4. Implementation
+4. Implementation
+
 The Python script below simulates the pendulum using Runge-Kutta, visualizing time series, phase portraits, Poincaré sections, resonance curve, and bifurcation diagram.
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -151,27 +218,66 @@ plt.ylabel(r'$\theta$ (rad)')
 plt.title('Bifurcation Diagram (β = 0.1)')
 plt.grid(True)
 plt.savefig('bifurcation_diagram.png')
-plt.show() 
+plt.show()
 
-# Output Description
+Output Description
 
-Time Series: Shows$theta(t)) for$beta = 0.05, 0.1, 0.5), illustrating damping effects.
-Phase Portrait: Plots$theta) vs.$dot{\theta}) for$beta = 0.1), showing trajectory behavior.
-Poincaré Section: Displays states at driving periods for$beta = 0.1), indicating periodic or chaotic motion.
-Resonance Curve: Plots amplitude vs.$omega) for$beta = 0.1), peaking near$omega_0).
-Bifurcation Diagram: Shows$theta) at Poincaré times vs. (A), revealing transitions to chaos.
 
-# Limitations and Extensions Limitations 
 
-Small-angle approximation fails for large$theta).
+
+
+Time Series: Shows $\theta(t)$ for $\beta = 0.05, 0.1, 0.5$, illustrating damping effects.
+
+
+
+Phase Portrait: Plots $\theta$ vs. $\dot{\theta}$ for $\beta = 0.1$, showing trajectory behavior.
+
+
+
+Poincaré Section: Displays states at driving periods for $\beta = 0.1$, indicating periodic or chaotic motion.
+
+
+
+Resonance Curve: Plots amplitude vs. $\omega$ for $\beta = 0.1$, peaking near $\omega_0$.
+
+
+
+Bifurcation Diagram: Shows $\theta$ at Poincaré times vs. $A$, revealing transitions to chaos.
+
+Limitations and Extensions
+
+Limitations
+
+
+
+
+
+Small-angle approximation fails for large $\theta$.
+
+
+
 Linear damping oversimplifies real friction.
+
+
+
 Assumes periodic forcing, limiting real-world applicability.
 
-# Extensions
- 
-Model nonlinear damping (e.g., (|\dot{\theta}|\dot{\theta})).
+Extensions
+
+
+
+
+
+Model nonlinear damping (e.g., $|\dot{\theta}|\dot{\theta}$).
+
+
+
 Include non-periodic or random forcing.
+
+
+
 Simulate coupled pendulums for complex interactions.
 
-# Conclusion
-The forced damped pendulum, governed by$ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin$theta) = A\cos$omega t)), exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.
+Conclusion
+
+The forced damped pendulum, governed by $\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)$, exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.
