@@ -220,6 +220,9 @@ plt.grid(True)
 plt.savefig('bifurcation_diagram.png')
 plt.show()
 
+![alt text](image-2.png)
+![alt text](image-3.png)
+
 Output Description
 
 
