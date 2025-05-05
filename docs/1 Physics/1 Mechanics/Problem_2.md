@@ -1,5 +1,6 @@
-Investigating the Dynamics of a Forced Damped Pendulum
-1. Theoretical Foundation
+**Investigating the Dynamics of a Forced Damped Pendulum**
+
+### 1. Theoretical Foundation
 Governing Equation
 The motion of a forced damped pendulum is governed by:
 $ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)$
