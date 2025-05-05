@@ -1,62 +1,47 @@
-# Problem 2import numpy as np
+import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
+ 
+ 
+# Pendulum parameters
+gamma = 0.2      # Damping coefficient
+omega0 = 1.0     # Natural frequency
+A = 1.2          # Driving force amplitude
+omega = 0.666    # Driving force frequency
 
-# Parameters (can be varied for experimentation)
-g = 9.81        # gravity (m/s^2)
-L = 1.0         # length of pendulum (m)
-b = 0.5         # damping coefficient
-A = 1.2         # amplitude of driving force
-omega_d = 2/3   # driving frequency
+# Time parameters
+dt = 0.01
+T = 200
+n = int(T/dt)
 
-# Small-angle approximation: sin(theta) ~ theta
-# Full nonlinear equation: theta'' + b*theta' + (g/L)*sin(theta) = A*cos(omega_d * t)
+# Initial conditions
+theta = np.zeros(n)
+omega_dot = np.zeros(n)
+theta[0] = 0.2
+omega_dot[0] = 0
 
-def pendulum(t, y):
-    theta, omega = y
-    dtheta_dt = omega
-    domega_dt = -b * omega - (g / L) * np.sin(theta) + A * np.cos(omega_d * t)
-    return [dtheta_dt, domega_dt]
+# Driving force
+t = np.linspace(0, T, n)
 
-# Initial conditions and time span
-y0 = [0.2, 0.0]  # small initial angle and zero initial angular velocity
-t_span = (0, 100)
-t_eval = np.linspace(*t_span, 5000)
+# Function for derivatives
+def derivatives(theta, omega_dot, t):
+    dtheta_dt = omega_dot
+    domega_dt = -gamma * omega_dot - omega0**2 * np.sin(theta) + A * np.cos(omega * t)
+    return dtheta_dt, domega_dt
 
-# Solve using Runge-Kutta method (RK45)
-sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
+# Runge-Kutta 4th-order integration
+for i in range(n - 1):
+    k1_theta, k1_omega = derivatives(theta[i], omega_dot[i], t[i])
+    k2_theta, k2_omega = derivatives(theta[i] + 0.5*dt*k1_theta, omega_dot[i] + 0.5*dt*k1_omega, t[i] + 0.5*dt)
+    k3_theta, k3_omega = derivatives(theta[i] + 0.5*dt*k2_theta, omega_dot[i] + 0.5*dt*k2_omega, t[i] + 0.5*dt)
+    k4_theta, k4_omega = derivatives(theta[i] + dt*k3_theta, omega_dot[i] + dt*k3_omega, t[i] + dt)
 
-# Plot time series
-plt.figure(figsize=(10, 4))
-plt.plot(sol.t, sol.y[0], label='Theta (rad)')
-plt.xlabel('Time (s)')
-plt.ylabel('Angular Displacement')
-plt.title('Forced Damped Pendulum Motion')
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.show()
+    theta[i+1] = theta[i] + (dt/6)*(k1_theta + 2*k2_theta + 2*k3_theta + k4_theta)
+    omega_dot[i+1] = omega_dot[i] + (dt/6)*(k1_omega + 2*k2_omega + 2*k3_omega + k4_omega)
 
-# Plot phase space (theta vs omega)
-plt.figure(figsize=(6, 6))
-plt.plot(sol.y[0], sol.y[1])
-plt.xlabel('Theta (rad)')
-plt.ylabel('Angular Velocity (rad/s)')
-plt.title('Phase Space')
-plt.grid(True)
-plt.tight_layout()
-plt.show()
-
-# Poincaré Section
-poincare_t = np.arange(0, 100, 2*np.pi/omega_d)
-poincare_theta = np.interp(poincare_t, sol.t, sol.y[0])
-poincare_omega = np.interp(poincare_t, sol.t, sol.y[1])
-
-plt.figure(figsize=(6, 6))
-plt.plot(poincare_theta, poincare_omega, 'o', markersize=2)
-plt.xlabel('Theta (rad)')
-plt.ylabel('Angular Velocity (rad/s)')
-plt.title('Poincaré Section')
-plt.grid(True)
-plt.tight_layout()
+# Plotting
+plt.plot(t, theta)
+plt.title("Angular Displacement vs Time")
+plt.xlabel("Time")
+plt.ylabel("Theta")
+plt.grid()
 plt.show()
