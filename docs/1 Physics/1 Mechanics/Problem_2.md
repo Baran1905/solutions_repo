@@ -247,9 +247,7 @@ Resonance Curve: Plots amplitude vs. $\omega$ for $\beta = 0.1$, peaking near $\
 
 Bifurcation Diagram: Shows $\theta$ at Poincaré times vs. $A$, revealing transitions to chaos.
 
-Limitations and Extensions
-
-Limitations
+**Limitations and Extensions Limitations**
 
 
 
