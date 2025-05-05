@@ -6,12 +6,12 @@ The motion of a forced damped pendulum is governed by:
 $ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)$
 where:
 
-$theta(t): Angular displacement (rad)
-(\beta): Damping coefficient (s⁻¹)
-(\omega_0 = \sqrt{g/l}): Natural frequency (rad/s), (g = 9.81 , \text{m/s}^2), (l): pendulum length (m)
-(A): Driving amplitude (rad/s²)
-(\omega): Driving frequency (rad/s)
-(t): Time (s)$
+$theta(t): Angular displacement (rad)$
+$(\beta): Damping coefficient (s⁻¹)$
+$(\omega_0 = \sqrt{g/l}): Natural frequency (rad/s), (g = 9.81 , \text{m/s}^2), (l): pendulum length (m)$
+$(A): Driving amplitude (rad/s²)$
+$(\omega): Driving frequency (rad/s)$
+$(t): Time (s)$
 
 Small-Angle Approximation
 For small (\theta), (\sin(\theta) \approx \theta), simplifying to:
