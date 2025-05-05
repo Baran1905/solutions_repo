@@ -2,7 +2,7 @@ Investigating the Dynamics of a Forced Damped Pendulum
 1. Theoretical Foundation
 Governing Equation
 The forced damped pendulum is governed by the nonlinear differential equation:
-[\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)]
+$$ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)$$
 where:
 
 (\theta(t)): Angular displacement (rad)
