@@ -175,34 +175,34 @@
 <h3 id="1-theoretical-foundation">1. Theoretical Foundation</h3>
 <p>Governing Equation
 The motion of a forced damped pendulum is governed by:
-<span class="arithmatex">\(ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)\)</span>
+<span class="arithmatex">\(ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin\)</span>theta) = A\cos<span class="arithmatex">\(omega t)\)</span>
 where:</p>
 <p><span class="arithmatex">\(theta(t): Angular displacement (rad)\)</span>
-<span class="arithmatex">\((\beta): Damping coefficient (s⁻¹)\)</span>
-<span class="arithmatex">\((\omega_0 = \sqrt{g/l}): Natural frequency (rad/s), (g = 9.81 , \text{m/s}^2), (l): pendulum length (m)\)</span>
+$<span class="arithmatex">\(beta): Damping coefficient (s⁻¹)\)</span>
+$<span class="arithmatex">\(omega_0 = \sqrt{g/l}): Natural frequency (rad/s), (g = 9.81 , \text{m/s}^2), (l): pendulum length (m)\)</span>
 <span class="arithmatex">\((A): Driving amplitude (rad/s²)\)</span>
-<span class="arithmatex">\((\omega): Driving frequency (rad/s)\)</span>
+$<span class="arithmatex">\(omega): Driving frequency (rad/s)\)</span>
 <span class="arithmatex">\((t): Time (s)\)</span></p>
 <h1 id="small-angle-approximation">Small-Angle Approximation</h1>
-<p>For small (\theta), (\sin(\theta) \approx \theta), simplifying to:
-[\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\theta = A\cos(\omega t)]
-This linear ODE has a solution combining homogeneous ((\theta_h)) and particular ((\theta_p)) parts:</p>
-<p>Homogeneous solution (underdamped, (\beta &lt; \omega_0)):</p>
-<p>[\theta_h(t) = e^{-\beta t} \left( C_1 \cos(\omega_d t) + C_2 \sin(\omega_d t) \right), \quad \omega_d = \sqrt{\omega_0^2 - \beta^2}]</p>
+<p>For small<span class="arithmatex">\(theta,\)</span>sin<span class="arithmatex">\(theta) \approx \theta, simplifying to:\)</span>
+<span class="arithmatex">\(ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\theta = A\cos\)</span>omega t$
+This linear ODE has a solution combining homogeneous (<span class="arithmatex">\(theta_h) and particular (\)</span>theta_p) parts:</p>
+<p>Homogeneous solution (underdamped,$beta &lt; \omega_0):</p>
+<p><span class="arithmatex">\(theta_h(t) = e^{-\beta t} \left( C_1 \cos\)</span>omega_d t) + C_2 \sin$omega_d t \right, \quad \omega_d = \sqrt{\omega_0^2 - \beta^2}</p>
 <h1 id="particular-solution">Particular solution:</h1>
-<p>Assume (\theta_p(t) = D_1 \cos(\omega t) + D_2 \sin(\omega t)). Solving:
-[D_1 = \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}, \quad D_2 = \frac{2A\beta\omega}{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}]
+<p>Assume<span class="arithmatex">\(theta_p(t) = D_1 \cos\)</span>omega t + D_2 \sin<span class="arithmatex">\(omega t. Solving:
+[D_1 = \frac{A\)</span>omega_0^2 - \omega^2}<span class="arithmatex">\(omega_0^2 - \omega^2)^2 + (2\beta\omega)^2, \quad D_2 = \frac{2A\beta\omega}{\)</span>omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}
 Steady-state amplitude:
-[D = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}}]
+[D = \frac{A}\sqrt<span class="arithmatex">\(omega_0^2 - \omega^2)^2 + (2\beta\omega)^2
 Resonance
-Resonance occurs when (\omega \approx \omega_0), maximizing (D). Damping ((\beta &gt; 0)) prevents infinite amplitude, shifting the peak slightly. This amplifies energy transfer, increasing oscillation amplitude.</p>
+Resonance occurs when\)</span>omega \approx \omega_0, maximizing (D). Damping ($beta &gt; 0) prevents infinite amplitude, shifting the peak slightly. This amplifies energy transfer, increasing oscillation amplitude.</p>
 <h3 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h3>
 <p>Parameter Effects</p>
-<p>Damping ((\beta)): High (\beta) suppresses amplitude and chaos; low (\beta) allows complex dynamics.
+<p>Damping (<span class="arithmatex">\(beta)): High\)</span>beta suppresses amplitude and chaos; low<span class="arithmatex">\(beta allows complex dynamics.
 Driving amplitude ((A)): Large (A) induces nonlinearity, potentially chaotic motion.
-Driving frequency ((\omega)): Near (\omega_0), resonance; far from (\omega_0), quasiperiodic or chaotic motion.</p>
+Driving frequency (\)</span>omega)): Near<span class="arithmatex">\(omega_0, resonance; far from\)</span>omega_0, quasiperiodic or chaotic motion.</p>
 <p>Transition to Chaos
-The nonlinear (\sin(\theta)) term drives transitions from periodic (synchronized with driving) to chaotic motion (sensitive to initial conditions). Phase portraits show loops (periodic) or tangled paths (chaotic). Poincaré sections display few points (periodic) or scattered clouds (chaotic).</p>
+The nonlinear<span class="arithmatex">\(sin\)</span>theta) term drives transitions from periodic (synchronized with driving) to chaotic motion (sensitive to initial conditions). Phase portraits show loops (periodic) or tangled paths (chaotic). Poincaré sections display few points (periodic) or scattered clouds (chaotic).</p>
 <h3 id="3-practical-applications">3. Practical Applications</h3>
 <p>Energy harvesting: Oscillatory motion in piezoelectric devices generates electricity.
 Structural engineering: Models vibrations in bridges under periodic forces.
@@ -301,13 +301,13 @@ plt.grid(True)
 plt.savefig('bifurcation_diagram.png')
 plt.show() </p>
 <h1 id="output-description">Output Description</h1>
-<p>Time Series: Shows (\theta(t)) for (\beta = 0.05, 0.1, 0.5), illustrating damping effects.
-Phase Portrait: Plots (\theta) vs. (\dot{\theta}) for (\beta = 0.1), showing trajectory behavior.
-Poincaré Section: Displays states at driving periods for (\beta = 0.1), indicating periodic or chaotic motion.
-Resonance Curve: Plots amplitude vs. (\omega) for (\beta = 0.1), peaking near (\omega_0).
-Bifurcation Diagram: Shows (\theta) at Poincaré times vs. (A), revealing transitions to chaos.</p>
+<p>Time Series: Shows<span class="arithmatex">\(theta(t)) for\)</span>beta = 0.05, 0.1, 0.5), illustrating damping effects.
+Phase Portrait: Plots<span class="arithmatex">\(theta) vs.\)</span>dot{\theta}) for<span class="arithmatex">\(beta = 0.1), showing trajectory behavior.
+Poincaré Section: Displays states at driving periods for\)</span>beta = 0.1), indicating periodic or chaotic motion.
+Resonance Curve: Plots amplitude vs.<span class="arithmatex">\(omega) for\)</span>beta = 0.1), peaking near<span class="arithmatex">\(omega_0).
+Bifurcation Diagram: Shows\)</span>theta) at Poincaré times vs. (A), revealing transitions to chaos.</p>
 <h1 id="limitations-and-extensions-limitations">Limitations and Extensions Limitations</h1>
-<p>Small-angle approximation fails for large (\theta).
+<p>Small-angle approximation fails for large$theta).
 Linear damping oversimplifies real friction.
 Assumes periodic forcing, limiting real-world applicability.</p>
 <h1 id="extensions">Extensions</h1>
@@ -315,7 +315,7 @@ Assumes periodic forcing, limiting real-world applicability.</p>
 Include non-periodic or random forcing.
 Simulate coupled pendulums for complex interactions.</p>
 <h1 id="conclusion">Conclusion</h1>
-<p>The forced damped pendulum, governed by (\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)), exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.</p>
+<p>The forced damped pendulum, governed by<span class="arithmatex">\(ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin\)</span>theta) = A\cos$omega t)), exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
