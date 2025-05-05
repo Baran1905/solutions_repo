@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Forced Damped Pendulum Simulation and Analysis - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Forced Damped Pendulum Simulation and Analysis";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,7 +48,7 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Problem 1</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Forced Damped Pendulum Simulation and Analysis</a>
 <ul class="current">
 </ul>
 </li>
@@ -163,7 +163,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Forced Damped Pendulum Simulation and Analysis</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,45 +171,68 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<p>Problem 2</p>
+<h1 id="forced-damped-pendulum-simulation-and-analysis">Forced Damped Pendulum Simulation and Analysis</h1>
 <p>import numpy as np
 import matplotlib.pyplot as plt</p>
-<h1 id="pendulum-parameters">Pendulum parameters</h1>
-<p>gamma = 0.2      # Damping coefficient
-omega0 = 1.0     # Natural frequency
-A = 1.2          # Driving force amplitude
-omega = 0.666    # Driving force frequency</p>
-<h1 id="time-parameters">Time parameters</h1>
-<p>dt = 0.01
-T = 200
-n = int(T/dt)</p>
-<h1 id="initial-conditions">Initial conditions</h1>
+<h1 id="parameters">=== Parameters ===</h1>
+<p>gamma = 0.2         # Damping coefficient
+omega0 = 1.0        # Natural frequency (sqrt(g/L))
+A = 1.2             # Driving force amplitude
+omega = 0.666       # Driving force frequency
+dt = 0.01           # Time step
+T = 200             # Total time
+n = int(T/dt)       # Number of steps</p>
+<h1 id="initial-conditions">=== Initial Conditions ===</h1>
 <p>theta = np.zeros(n)
 omega_dot = np.zeros(n)
-theta[0] = 0.2
-omega_dot[0] = 0</p>
-<h1 id="driving-force">Driving force</h1>
-<p>t = np.linspace(0, T, n)</p>
-<h1 id="function-for-derivatives">Function for derivatives</h1>
+theta[0] = 0.2      # Initial angle
+omega_dot[0] = 0.0  # Initial angular velocity
+t = np.linspace(0, T, n)</p>
+<h1 id="differential-equation">=== Differential Equation ===</h1>
 <p>def derivatives(theta, omega_dot, t):
     dtheta_dt = omega_dot
     domega_dt = -gamma * omega_dot - omega0**2 * np.sin(theta) + A * np.cos(omega * t)
     return dtheta_dt, domega_dt</p>
-<h1 id="runge-kutta-4th-order-integration">Runge-Kutta 4th-order integration</h1>
+<h1 id="runge-kutta-4th-order-integration">=== Runge-Kutta 4th Order Integration ===</h1>
 <p>for i in range(n - 1):
     k1_theta, k1_omega = derivatives(theta[i], omega_dot[i], t[i])
-    k2_theta, k2_omega = derivatives(theta[i] + 0.5<em>dt</em>k1_theta, omega_dot[i] + 0.5<em>dt</em>k1_omega, t[i] + 0.5<em>dt)
-    k3_theta, k3_omega = derivatives(theta[i] + 0.5</em>dt<em>k2_theta, omega_dot[i] + 0.5</em>dt<em>k2_omega, t[i] + 0.5</em>dt)
-    k4_theta, k4_omega = derivatives(theta[i] + dt<em>k3_theta, omega_dot[i] + dt</em>k3_omega, t[i] + dt)</p>
-<pre><code>theta[i+1] = theta[i] + (dt/6)*(k1_theta + 2*k2_theta + 2*k3_theta + k4_theta)
-omega_dot[i+1] = omega_dot[i] + (dt/6)*(k1_omega + 2*k2_omega + 2*k3_omega + k4_omega)
+    k2_theta, k2_omega = derivatives(theta[i] + 0.5 * dt * k1_theta, omega_dot[i] + 0.5 * dt * k1_omega, t[i] + 0.5 * dt)
+    k3_theta, k3_omega = derivatives(theta[i] + 0.5 * dt * k2_theta, omega_dot[i] + 0.5 * dt * k2_omega, t[i] + 0.5 * dt)
+    k4_theta, k4_omega = derivatives(theta[i] + dt * k3_theta, omega_dot[i] + dt * k3_omega, t[i] + dt)</p>
+<pre><code>theta[i+1] = theta[i] + (dt / 6) * (k1_theta + 2 * k2_theta + 2 * k3_theta + k4_theta)
+omega_dot[i+1] = omega_dot[i] + (dt / 6) * (k1_omega + 2 * k2_omega + 2 * k3_omega + k4_omega)
 </code></pre>
-<h1 id="plotting">Plotting</h1>
-<p>plt.plot(t, theta)
-plt.title("Angular Displacement vs Time")
+<h1 id="plot-angular-displacement-vs-time">=== Plot: Angular Displacement vs Time ===</h1>
+<p>plt.figure(figsize=(10, 4))
+plt.plot(t, theta, label="Theta(t)")
+plt.title("Forced Damped Pendulum: Angular Displacement vs Time")
 plt.xlabel("Time")
-plt.ylabel("Theta")
-plt.grid()
+plt.ylabel("Theta (rad)")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()</p>
+<h1 id="plot-phase-space">=== Plot: Phase Space ===</h1>
+<p>plt.figure(figsize=(6, 6))
+plt.plot(theta, omega_dot, lw=0.5)
+plt.title("Phase Space: Theta vs Angular Velocity")
+plt.xlabel("Theta (rad)")
+plt.ylabel("Omega (rad/s)")
+plt.grid(True)
+plt.tight_layout()
+plt.show()</p>
+<h1 id="plot-poincare-section">=== Plot: Poincare Section ===</h1>
+<p>poincare_t = np.arange(0, T, 2*np.pi/omega)
+poincare_indices = [int(i/dt) for i in poincare_t if int(i/dt) &lt; len(theta)]
+poincare_theta = theta[poincare_indices]
+poincare_omega = omega_dot[poincare_indices]</p>
+<p>plt.figure(figsize=(6, 6))
+plt.scatter(poincare_theta, poincare_omega, s=1)
+plt.title("Poincare Section")
+plt.xlabel("Theta (rad)")
+plt.ylabel("Omega (rad/s)")
+plt.grid(True)
+plt.tight_layout()
 plt.show()</p>
 </div>
 </div><footer>
