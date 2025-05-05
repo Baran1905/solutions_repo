@@ -171,615 +171,152 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<p>Investigating the Dynamics of a Forced Damped Pendulum
-1. Theoretical Foundation
-Governing Equation
-The motion of a forced damped pendulum is described by the nonlinear second-order differential equation:</p>
-<p>𝜃
-¨
-+
-2
-𝛽
-𝜃
-˙
-+
-𝜔
-0
-2
-sin
-⁡
-(
-𝜃
-)
-=
-𝐴
-cos
-⁡
-(
-𝜔
-𝑡
-)
-θ
-¨
- +2β 
-θ
-˙
- +ω 
-0
-2
-​
- sin(θ)=Acos(ωt)
-Where:</p>
-<p>𝜃
-(
-𝑡
-)
-θ(t): Angular displacement (rad)</p>
-<p>𝛽
-β: Damping coefficient (
-𝑠
-−
-1
-s 
-−1
- )</p>
-<p>𝜔
-0
-=
-𝑔
-𝑙
-ω 
-0
-​
- = 
-l
-g
-​</p>
-<p>​
- : Natural frequency (
-𝑟
-𝑎
-𝑑
-/
-𝑠
-rad/s)</p>
-<h1 id="g">𝑔</h1>
-<p>9.81
- 
-𝑚
-/
-𝑠
-2
-g=9.81 m/s 
-2
- : Gravitational acceleration</p>
-<p>𝑙
-l: Pendulum length (m)</p>
-<p>𝐴
-A: Driving amplitude (
-𝑟
-𝑎
-𝑑
-/
-𝑠
-2
-rad/s 
-2
- )</p>
-<p>𝜔
-ω: Driving frequency (
-𝑟
-𝑎
-𝑑
-/
-𝑠
-rad/s)</p>
-<p>𝑡
-t: Time (s)</p>
-<ol>
-<li>Linear Approximation (Small-Angle)
-For small angles (
-𝜃
-≪
-1
-θ≪1), the equation simplifies using 
-sin
-⁡
-(
-𝜃
-)
-≈
-𝜃
-sin(θ)≈θ:</li>
-</ol>
-<p>𝜃
-¨
-+
-2
-𝛽
-𝜃
-˙
-+
-𝜔
-0
-2
-𝜃
-=
-𝐴
-cos
-⁡
-(
-𝜔
-𝑡
-)
-θ
-¨
- +2β 
-θ
-˙
- +ω 
-0
-2
-​
- θ=Acos(ωt)
-This linear nonhomogeneous ODE has the general solution:</p>
-<p>𝜃
-(
-𝑡
-)
-=
-𝜃
-ℎ
-(
-𝑡
-)
-+
-𝜃
-𝑝
-(
-𝑡
-)
-θ(t)=θ 
-h
-​
- (t)+θ 
-p
-​
- (t)
-Homogeneous Solution (Underdamped case: 
-𝛽
-&lt;
-𝜔
-0
-β&lt;ω 
-0
-​
- ):
-𝜃
-ℎ
-(
-𝑡
-)
-=
-𝑒
-−
-𝛽
-𝑡
-(
-𝐶
-1
-cos
-⁡
-(
-𝜔
-𝑑
-𝑡
-)
-+
-𝐶
-2
-sin
-⁡
-(
-𝜔
-𝑑
-𝑡
-)
-)
-,
-𝜔
-𝑑
-=
-𝜔
-0
-2
-−
-𝛽
-2
-θ 
-h
-​
- (t)=e 
-−βt
- (C 
-1
-​
- cos(ω 
-d
-​
- t)+C 
-2
-​
- sin(ω 
-d
-​
- t)),ω 
-d
-​
- = 
-ω 
-0
-2
-​
- −β 
-2</p>
-<p>​</p>
-<p>Particular Solution:
-Assume:</p>
-<p>𝜃
-𝑝
-(
-𝑡
-)
-=
-𝐷
-1
-cos
-⁡
-(
-𝜔
-𝑡
-)
-+
-𝐷
-2
-sin
-⁡
-(
-𝜔
-𝑡
-)
-θ 
-p
-​
- (t)=D 
-1
-​
- cos(ωt)+D 
-2
-​
- sin(ωt)
-Solving yields:</p>
-<p>𝐷
-1
-=
-𝐴
-(
-𝜔
-0
-2
-−
-𝜔
-2
-)
-(
-𝜔
-0
-2
-−
-𝜔
-2
-)
-2
-+
-(
-2
-𝛽
-𝜔
-)
-2
-,
-𝐷
-2
-=
-2
-𝐴
-𝛽
-𝜔
-(
-𝜔
-0
-2
-−
-𝜔
-2
-)
-2
-+
-(
-2
-𝛽
-𝜔
-)
-2
-D 
-1
-​
- = 
-(ω 
-0
-2
-​
- −ω 
-2
- ) 
-2
- +(2βω) 
-2</p>
-<p>A(ω 
-0
-2
-​
- −ω 
-2
- )
-​
- ,D 
-2
-​
- = 
-(ω 
-0
-2
-​
- −ω 
-2
- ) 
-2
- +(2βω) 
-2</p>
-<p>2Aβω
-​</p>
-<p>The steady-state amplitude is:</p>
-<h1 id="d">𝐷</h1>
-<p>𝐷
-1
-2
-+
-𝐷
-2
-2
-=
-𝐴
-(
-𝜔
-0
-2
-−
-𝜔
-2
-)
-2
-+
-(
-2
-𝛽
-𝜔
-)
-2
-D= 
-D 
-1
-2
-​
- +D 
-2
-2
-​</p>
-<p>​
- = 
-(ω 
-0
-2
-​
- −ω 
-2
- ) 
-2
- +(2βω) 
-2</p>
-<p>​</p>
-<p>A
-​</p>
-<ol>
-<li>Resonance and Nonlinear Dynamics
-Resonance Behavior
-Resonance occurs when 
-𝜔
-≈
-𝜔
-0
-ω≈ω 
-0
-​
- , resulting in a peak in amplitude. Damping 
-(
-𝛽<blockquote>
-<p>0
-)
-(β&gt;0) prevents divergence, shifting the peak frequency slightly and reducing the amplitude.</p>
-</blockquote>
-</li>
-</ol>
-<p>Parameter Influence
-Damping (
-𝛽
-β): High damping suppresses oscillations and chaos; low damping allows richer dynamics.</p>
-<p>Driving Amplitude (
-𝐴
-A): Higher 
-𝐴
-A induces stronger nonlinearities, possibly leading to chaos.</p>
-<p>Driving Frequency (
-𝜔
-ω): Near resonance causes large periodic responses; far from resonance may result in quasiperiodic or chaotic behavior.</p>
-<ol>
-<li>Transition to Chaos
-The full nonlinear equation with 
-sin
-⁡
-(
-𝜃
-)
-sin(θ) (no small-angle approximation) enables chaotic dynamics due to sensitivity to initial conditions.</li>
-</ol>
-<p>Periodic Motion: Closed loops in phase space.</p>
-<p>Chaotic Motion: Irregular, fractal-like paths; sensitive to initial conditions.</p>
-<p>Tools:</p>
-<p>Phase Portraits: Visualize trajectory behavior.</p>
-<p>Poincaré Sections: Sample the state once per period of driving force.</p>
-<p>Bifurcation Diagrams: Show changes in system behavior as a parameter (e.g., 
-𝐴
-A) varies.</p>
-<ol>
-<li>Practical Applications
-Energy Harvesting: Piezoelectric generators converting oscillations to electrical power.</li>
-</ol>
-<p>Structural Engineering: Modeling bridges and buildings under dynamic forces.</p>
-<p>Electronics: Analogs in RLC circuits and resonance behavior.</p>
-<p>Biomechanics &amp; Robotics: Gait analysis and driven limb movement.</p>
-<ol>
-<li>Computational Implementation
-Numerical Simulation in Python (Runge-Kutta)
-python
-Kopyala
-Düzenle
+<p><strong>Investigating the Dynamics of a Forced Damped Pendulum</strong></p>
+<h3 id="1-theoretical-foundation">1. Theoretical Foundation</h3>
+<p>Governing Equation
+The motion of a forced damped pendulum is governed by:
+<span class="arithmatex">\(ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)\)</span>
+where:</p>
+<p>(\theta(t)): Angular displacement (rad)
+(\beta): Damping coefficient (s⁻¹)
+(\omega_0 = \sqrt{g/l}): Natural frequency (rad/s), (g = 9.81 , \text{m/s}^2), (l): pendulum length (m)
+(A): Driving amplitude (rad/s²)
+(\omega): Driving frequency (rad/s)
+(t): Time (s)</p>
+<p>Small-Angle Approximation
+For small (\theta), (\sin(\theta) \approx \theta), simplifying to:
+[\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\theta = A\cos(\omega t)]
+This linear ODE has a solution combining homogeneous ((\theta_h)) and particular ((\theta_p)) parts:</p>
+<p>Homogeneous solution (underdamped, (\beta &lt; \omega_0)):</p>
+<p>[\theta_h(t) = e^{-\beta t} \left( C_1 \cos(\omega_d t) + C_2 \sin(\omega_d t) \right), \quad \omega_d = \sqrt{\omega_0^2 - \beta^2}]</p>
+<p>Particular solution:</p>
+<p>Assume (\theta_p(t) = D_1 \cos(\omega t) + D_2 \sin(\omega t)). Solving:
+[D_1 = \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}, \quad D_2 = \frac{2A\beta\omega}{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}]
+Steady-state amplitude:
+[D = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}}]
+Resonance
+Resonance occurs when (\omega \approx \omega_0), maximizing (D). Damping ((\beta &gt; 0)) prevents infinite amplitude, shifting the peak slightly. This amplifies energy transfer, increasing oscillation amplitude.</p>
+<h3 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h3>
+<p>Parameter Effects</p>
+<p>Damping ((\beta)): High (\beta) suppresses amplitude and chaos; low (\beta) allows complex dynamics.
+Driving amplitude ((A)): Large (A) induces nonlinearity, potentially chaotic motion.
+Driving frequency ((\omega)): Near (\omega_0), resonance; far from (\omega_0), quasiperiodic or chaotic motion.</p>
+<p>Transition to Chaos
+The nonlinear (\sin(\theta)) term drives transitions from periodic (synchronized with driving) to chaotic motion (sensitive to initial conditions). Phase portraits show loops (periodic) or tangled paths (chaotic). Poincaré sections display few points (periodic) or scattered clouds (chaotic).</p>
+<h3 id="3-practical-applications">3. Practical Applications</h3>
+<p>Energy harvesting: Oscillatory motion in piezoelectric devices generates electricity.
+Structural engineering: Models vibrations in bridges under periodic forces.
+Electronics: Driven RLC circuits, analogous to the pendulum, used in signal processing.
+Biomechanics: Describes gait or robotic motion under periodic forcing.</p>
+<h3 id="4-implementation">4. Implementation</h3>
+<p>The Python script below simulates the pendulum using Runge-Kutta, visualizing time series, phase portraits, Poincaré sections, resonance curve, and bifurcation diagram.
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp</li>
-</ol>
+from scipy.integrate import solve_ivp</p>
 <h1 id="constants">Constants</h1>
-<p>g = 9.81
-l = 1.0
-omega0 = np.sqrt(g / l)
-beta_values = [0.05, 0.1, 0.5]
-A = 1.5
-omega = 2.0
-t_span = (0, 100)
-dt = 0.01
-t_eval = np.arange(*t_span, dt)
-theta0, omega0_init = 0.1, 0.0</p>
+<p>g = 9.81  # m/s^2
+l = 1.0   # pendulum length (m)
+omega0 = np.sqrt(g / l)  # natural frequency
+beta_values = [0.05, 0.1, 0.5]  # damping coefficients
+A = 1.5     # driving amplitude
+omega = 2.0 # driving frequency
+t_span = (0, 100)  # time span
+dt = 0.01  # time step
+t_eval = np.arange(0, 100, dt)
+theta0, omega0_init = 0.1, 0.0  # initial conditions</p>
 <h1 id="differential-equation">Differential equation</h1>
 <p>def pendulum(t, y, beta, omega0, A, omega):
     theta, omega_dot = y
-    return [omega_dot, -2<em>beta</em>omega_dot - omega0<em><em>2</em>np.sin(theta) + A</em>np.cos(omega*t)]</p>
-<h1 id="time-series-for-different-damping">Time Series for Different Damping</h1>
+    return [omega_dot, -2 * beta * omega_dot - omega0**2 * np.sin(theta) + A * np.cos(omega * t)]</p>
+<h1 id="simulate-for-different-beta-values">Simulate for different beta values</h1>
 <p>plt.figure(figsize=(10, 6))
 for beta in beta_values:
-    sol = solve_ivp(pendulum, t_span, [theta0, omega0_init], t_eval=t_eval, args=(beta, omega0, A, omega))
+    sol = solve_ivp(pendulum, t_span, [theta0, omega0_init], method='RK45', t_eval=t_eval,
+                    args=(beta, omega0, A, omega))
     plt.plot(sol.t, sol.y[0], label=f'β = {beta}')
 plt.xlabel('Time (s)')
 plt.ylabel(r'<span class="arithmatex">\(\theta\)</span> (rad)')
 plt.title('Time Series for Different Damping Coefficients')
 plt.legend()
-plt.grid(True) 
+plt.grid(True)
+plt.savefig('time_series.png')
 plt.show()</p>
-<h1 id="phase-portrait-01">Phase Portrait (β = 0.1)</h1>
-<p>sol = solve_ivp(pendulum, t_span, [theta0, omega0_init], t_eval=t_eval, args=(0.1, omega0, A, omega))
-theta, omega_dot = sol.y
-plt.figure(figsize=(8, 6))
+<h1 id="phase-portrait-example-beta-01">Phase portrait (example: beta = 0.1)</h1>
+<p>sol = solve_ivp(pendulum, t_span, [theta0, omega0_init], method='RK45', t_eval=t_eval,
+                args=(beta_values[1], omega0, A, omega))
+theta, omega_dot = sol.y[0], sol.y[1]</p>
+<p>plt.figure(figsize=(8, 6))
 plt.plot(theta, omega_dot)
 plt.xlabel(r'<span class="arithmatex">\(\theta\)</span> (rad)')
 plt.ylabel(r'<span class="arithmatex">\(\dot{\theta}\)</span> (rad/s)')
 plt.title('Phase Portrait (β = 0.1)')
-plt.grid(True) 
+plt.grid(True)
+plt.savefig('phase_portrait.png')
 plt.show()</p>
-<h1 id="poincare-section">Poincaré Section</h1>
+<h1 id="poincare-section">Poincaré section</h1>
 <p>T = 2 * np.pi / omega
 poincare_times = np.arange(0, sol.t[-1], T)
-indices = np.searchsorted(sol.t, poincare_times)
-plt.figure(figsize=(8, 6))
-plt.scatter(theta[indices], omega_dot[indices], s=10)
+poincare_indices = np.searchsorted(sol.t, poincare_times)
+theta_poincare = theta[poincare_indices]
+omega_poincare = omega_dot[poincare_indices]</p>
+<p>plt.figure(figsize=(8, 6))
+plt.scatter(theta_poincare, omega_poincare, s=10)
 plt.xlabel(r'<span class="arithmatex">\(\theta\)</span> (rad)')
 plt.ylabel(r'<span class="arithmatex">\(\dot{\theta}\)</span> (rad/s)')
 plt.title('Poincaré Section (β = 0.1)')
-plt.grid(True) 
+plt.grid(True)
+plt.savefig('poincare_section.png')
 plt.show()</p>
-<h1 id="resonance-curve">Resonance Curve</h1>
+<h1 id="resonance-curve">Resonance curve</h1>
 <p>omega_range = np.linspace(0.5, 3.0, 100)
-amplitude = A / np.sqrt((omega0<strong>2 - omega_range</strong>2)<strong>2 + (2 * 0.1 * omega_range)</strong>2)
-plt.figure(figsize=(10, 6))
+amplitude = A / np.sqrt((omega0<strong>2 - omega_range</strong>2)<strong>2 + (2 * beta_values[1] * omega_range)</strong>2)</p>
+<p>plt.figure(figsize=(10, 6))
 plt.plot(omega_range, amplitude)
 plt.axvline(omega0, color='r', linestyle='--', label=r'<span class="arithmatex">\(\omega_0\)</span>')
-plt.xlabel('Driving Frequency ω (rad/s)')
+plt.xlabel(r'Driving Frequency <span class="arithmatex">\(\omega\)</span> (rad/s)')
 plt.ylabel('Amplitude (rad)')
 plt.title('Resonance Curve (β = 0.1)')
 plt.legend()
-plt.grid(True) 
+plt.grid(True)
+plt.savefig('resonance_curve.png')
 plt.show()</p>
-<h1 id="bifurcation-diagram">Bifurcation Diagram</h1>
+<h1 id="bifurcation-diagram">Bifurcation diagram</h1>
 <p>A_range = np.linspace(0.5, 2.5, 100)
 theta_bifurcation = []
 t_span_bif = (0, 200)
-t_eval_bif = np.arange(100, 200, dt)
-for A_val in A_range:
-    sol_bif = solve_ivp(pendulum, t_span_bif, [theta0, omega0_init], t_eval=t_eval_bif, args=(0.1, omega0, A_val, omega))
-    T = 2 * np.pi / omega
-    poincare_indices = np.searchsorted(sol_bif.t, np.arange(100, 200, T))
-    theta_bifurcation.extend(sol_bif.y[0][poincare_indices])
-A_bifurcation = np.repeat(A_range, len(poincare_indices))
-plt.figure(figsize=(10, 6))
+t_eval_bif = np.arange(100, 200, dt)</p>
+<p>for A in A_range:
+    sol_bif = solve_ivp(pendulum, t_span_bif, [theta0, omega0_init], method='RK45',
+                        t_eval=t_eval_bif, args=(beta_values[1], omega0, A, omega))
+    theta_bif = sol_bif.y[0]
+    poincare_indices_bif = np.searchsorted(sol_bif.t, np.arange(100, 200, T))
+    theta_bifurcation.extend(theta_bif[poincare_indices_bif])</p>
+<p>A_bifurcation = np.repeat(A_range, len(poincare_indices_bif))</p>
+<p>plt.figure(figsize=(10, 6))
 plt.scatter(A_bifurcation, theta_bifurcation, s=1, alpha=0.5)
 plt.xlabel('Driving Amplitude <span class="arithmatex">\(A\)</span> (rad/s²)')
 plt.ylabel(r'<span class="arithmatex">\(\theta\)</span> (rad)')
 plt.title('Bifurcation Diagram (β = 0.1)')
-plt.grid(True) 
-plt.show()
-7. Simulation Outputs
-Time Series: Shows 
-𝜃
-(
-𝑡
-)
-θ(t) for various 
-𝛽
-β, illustrating damping effects.</p>
-<p>Phase Portrait: 
-𝜃
-θ vs. 
-𝜃
-˙
-θ
-˙
- , reveals system behavior (e.g., limit cycles).</p>
-<p>Poincaré Section: Captures system at driving period intervals, indicating periodicity or chaos.</p>
-<p>Resonance Curve: Visualizes steady-state amplitude vs. driving frequency.</p>
-<p>Bifurcation Diagram: Demonstrates transitions from periodic to chaotic regimes as 
-𝐴
-A increases.</p>
-<ol>
-<li>Limitations and Extensions
-Limitations
-Small-angle approximation fails at large amplitudes.</li>
-</ol>
-<p>Linear damping may not capture real-world friction accurately.</p>
-<p>Assumes purely periodic forcing.</p>
-<p>Extensions
-Nonlinear damping models (e.g., quadratic or Coulomb friction).</p>
-<p>Stochastic forcing to simulate real-world variability.</p>
-<p>Coupled pendulums for multi-body interactions and synchronization phenomena.</p>
+plt.grid(True)
+plt.savefig('bifurcation_diagram.png')
+plt.show() </p>
+<p>Output Description</p>
+<p>Time Series: Shows (\theta(t)) for (\beta = 0.05, 0.1, 0.5), illustrating damping effects.
+Phase Portrait: Plots (\theta) vs. (\dot{\theta}) for (\beta = 0.1), showing trajectory behavior.
+Poincaré Section: Displays states at driving periods for (\beta = 0.1), indicating periodic or chaotic motion.
+Resonance Curve: Plots amplitude vs. (\omega) for (\beta = 0.1), peaking near (\omega_0).
+Bifurcation Diagram: Shows (\theta) at Poincaré times vs. (A), revealing transitions to chaos.</p>
+<p>Limitations and Extensions
+Limitations </p>
+<p>Small-angle approximation fails for large (\theta).
+Linear damping oversimplifies real friction.
+Assumes periodic forcing, limiting real-world applicability.</p>
+<p>Extensions</p>
+<p>Model nonlinear damping (e.g., (|\dot{\theta}|\dot{\theta})).
+Include non-periodic or random forcing.
+Simulate coupled pendulums for complex interactions.</p>
 <p>Conclusion
-The forced damped pendulum encapsulates rich physical behavior, transitioning from periodic to chaotic motion depending on system parameters. Through numerical simulations and analytical insight, one can explore the complexity of non-linear dynamics, resonance, and chaos — relevant across engineering, physics, and applied sciences.</p>
+The forced damped pendulum, governed by (\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)), exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
