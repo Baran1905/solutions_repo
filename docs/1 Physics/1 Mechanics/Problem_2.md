@@ -1,6 +1,6 @@
-Investigating the Dynamics of a Forced Damped Pendulum
+**Investigating the Dynamics of a Forced Damped Pendulum**
 
-1. Theoretical Foundation
+### 1. Theoretical Foundation
 
 Governing Equation
 
@@ -36,7 +36,7 @@ $\omega$: Driving frequency (rad/s)
 
 $t$: Time (s)
 
-Small-Angle Approximation
+**Small-Angle Approximation**
 
 For small $\theta$, $\sin(\theta) \approx \theta$, simplifying to:
 
@@ -56,7 +56,7 @@ $$ \theta_h(t) = e^{-\beta t} \left( C_1 \cos(\omega_d t) + C_2 \sin(\omega_d t)
 
 
 
-Particular solution:
+ Particular solution:
 
 Assume $\theta_p(t) = D_1 \cos(\omega t) + D_2 \sin(\omega t)$. Solving:
 
@@ -66,11 +66,11 @@ Steady-state amplitude:
 
 $$ D = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}} $$
 
-Resonance
+ Resonance
 
 Resonance occurs when $\omega \approx \omega_0$, maximizing $D$. Damping ($\beta > 0$) prevents infinite amplitude, shifting the peak slightly. This amplifies energy transfer, increasing oscillation amplitude.
 
-2. Analysis of Dynamics
+###2. Analysis of Dynamics
 
 Parameter Effects
 
