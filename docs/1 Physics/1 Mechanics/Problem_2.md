@@ -152,7 +152,7 @@ plt.grid(True)
 plt.savefig('bifurcation_diagram.png')
 plt.show() 
 
-Output Description
+# Output Description
 
 Time Series: Shows (\theta(t)) for (\beta = 0.05, 0.1, 0.5), illustrating damping effects.
 Phase Portrait: Plots (\theta) vs. (\dot{\theta}) for (\beta = 0.1), showing trajectory behavior.
@@ -160,18 +160,17 @@ Poincaré Section: Displays states at driving periods for (\beta = 0.1), indicat
 Resonance Curve: Plots amplitude vs. (\omega) for (\beta = 0.1), peaking near (\omega_0).
 Bifurcation Diagram: Shows (\theta) at Poincaré times vs. (A), revealing transitions to chaos.
 
-Limitations and Extensions
-Limitations 
+# Limitations and Extensions Limitations 
 
 Small-angle approximation fails for large (\theta).
 Linear damping oversimplifies real friction.
 Assumes periodic forcing, limiting real-world applicability.
 
-Extensions
+# Extensions
  
 Model nonlinear damping (e.g., (|\dot{\theta}|\dot{\theta})).
 Include non-periodic or random forcing.
 Simulate coupled pendulums for complex interactions.
 
-Conclusion
+# Conclusion
 The forced damped pendulum, governed by (\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)), exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.
