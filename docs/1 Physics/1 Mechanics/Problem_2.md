@@ -1,4 +1,16 @@
-# Forced Damped Pendulum Simulation and Analysis
+# Forced Damped Pendulum Analysis and Simulation
+
+"""
+Problem 2:
+Investigating the Dynamics of a Forced Damped Pendulum
+
+Motivation:
+The forced damped pendulum is a captivating example of a physical system with intricate behavior resulting from the interplay of damping, restoring forces, and external driving forces. By introducing both damping and external periodic forcing, the system demonstrates a transition from simple harmonic motion to a rich spectrum of dynamics, including resonance, chaos, and quasiperiodic behavior.
+
+Adding forcing introduces new parameters, such as the amplitude and frequency of the external force, which significantly affect the pendulum's behavior. By systematically varying these parameters, a diverse class of solutions can be observed, including synchronized oscillations, chaotic motion, and resonance phenomena. These behaviors not only highlight fundamental physics principles but also provide insights into engineering applications such as energy harvesting, vibration isolation, and mechanical resonance.
+
+This script provides a simulation and visualization platform to explore the dynamics of the forced damped pendulum.
+"""
 
 import numpy as np
 import matplotlib.pyplot as plt
