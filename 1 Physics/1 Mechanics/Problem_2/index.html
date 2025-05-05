@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Problem 2import numpy as np - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Problem 2import numpy as np";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,7 +48,7 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Problem 1</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2import numpy as np</a>
 <ul class="current">
 </ul>
 </li>
@@ -163,7 +163,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Problem 2import numpy as np</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +171,59 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2">Problem 2</h1>
+<h1 id="problem-2import-numpy-as-np">Problem 2import numpy as np</h1>
+<p>import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp</p>
+<h1 id="parameters-can-be-varied-for-experimentation">Parameters (can be varied for experimentation)</h1>
+<p>g = 9.81        # gravity (m/s^2)
+L = 1.0         # length of pendulum (m)
+b = 0.5         # damping coefficient
+A = 1.2         # amplitude of driving force
+omega_d = 2/3   # driving frequency</p>
+<h1 id="small-angle-approximation-sintheta-theta">Small-angle approximation: sin(theta) ~ theta</h1>
+<h1 id="full-nonlinear-equation-theta-btheta-glsintheta-acosomega_d-t">Full nonlinear equation: theta'' + b<em>theta' + (g/L)</em>sin(theta) = A*cos(omega_d * t)</h1>
+<p>def pendulum(t, y):
+    theta, omega = y
+    dtheta_dt = omega
+    domega_dt = -b * omega - (g / L) * np.sin(theta) + A * np.cos(omega_d * t)
+    return [dtheta_dt, domega_dt]</p>
+<h1 id="initial-conditions-and-time-span">Initial conditions and time span</h1>
+<p>y0 = [0.2, 0.0]  # small initial angle and zero initial angular velocity
+t_span = (0, 100)
+t_eval = np.linspace(*t_span, 5000)</p>
+<h1 id="solve-using-runge-kutta-method-rk45">Solve using Runge-Kutta method (RK45)</h1>
+<p>sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)</p>
+<h1 id="plot-time-series">Plot time series</h1>
+<p>plt.figure(figsize=(10, 4))
+plt.plot(sol.t, sol.y[0], label='Theta (rad)')
+plt.xlabel('Time (s)')
+plt.ylabel('Angular Displacement')
+plt.title('Forced Damped Pendulum Motion')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()</p>
+<h1 id="plot-phase-space-theta-vs-omega">Plot phase space (theta vs omega)</h1>
+<p>plt.figure(figsize=(6, 6))
+plt.plot(sol.y[0], sol.y[1])
+plt.xlabel('Theta (rad)')
+plt.ylabel('Angular Velocity (rad/s)')
+plt.title('Phase Space')
+plt.grid(True)
+plt.tight_layout()
+plt.show()</p>
+<h1 id="poincare-section">Poincaré Section</h1>
+<p>poincare_t = np.arange(0, 100, 2*np.pi/omega_d)
+poincare_theta = np.interp(poincare_t, sol.t, sol.y[0])
+poincare_omega = np.interp(poincare_t, sol.t, sol.y[1])</p>
+<p>plt.figure(figsize=(6, 6))
+plt.plot(poincare_theta, poincare_omega, 'o', markersize=2)
+plt.xlabel('Theta (rad)')
+plt.ylabel('Angular Velocity (rad/s)')
+plt.title('Poincaré Section')
+plt.grid(True)
+plt.tight_layout()
+plt.show()</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
