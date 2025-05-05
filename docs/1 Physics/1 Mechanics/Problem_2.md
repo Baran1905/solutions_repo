@@ -1,7 +1,9 @@
+Problem 2
+
 import numpy as np
 import matplotlib.pyplot as plt
  
- 
+
 # Pendulum parameters
 gamma = 0.2      # Damping coefficient
 omega0 = 1.0     # Natural frequency
