@@ -13,7 +13,7 @@ $(A): Driving amplitude (rad/s²)$
 $(\omega): Driving frequency (rad/s)$
 $(t): Time (s)$
 
-Small-Angle Approximation
+# Small-Angle Approximation
 For small (\theta), (\sin(\theta) \approx \theta), simplifying to:
 [\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\theta = A\cos(\omega t)]
 This linear ODE has a solution combining homogeneous ((\theta_h)) and particular ((\theta_p)) parts:
@@ -22,7 +22,7 @@ Homogeneous solution (underdamped, (\beta < \omega_0)):
 
 [\theta_h(t) = e^{-\beta t} \left( C_1 \cos(\omega_d t) + C_2 \sin(\omega_d t) \right), \quad \omega_d = \sqrt{\omega_0^2 - \beta^2}]
 
-Particular solution:
+# Particular solution:
 
 Assume (\theta_p(t) = D_1 \cos(\omega t) + D_2 \sin(\omega t)). Solving:
 [D_1 = \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}, \quad D_2 = \frac{2A\beta\omega}{(\omega_0^2 - \omega^2)^2 + (2\beta\omega)^2}]
