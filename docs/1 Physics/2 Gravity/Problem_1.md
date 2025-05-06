@@ -106,11 +106,11 @@ Orbital Period: Approximately ( T = 27.32 , \text{days} = 2.36 \times 10^6 , \te
 
 Earth’s Mass: Using Kepler’s Third Law:
 
-$ M = \frac{4\pi^2 r^3}{G T^2} $
+$M = \frac{4\pi^2 r^3}{G T^2}$
 
-$ M = \frac{4\pi^2 (3.844 \times 10^8)^3}{6.674 \times 10^{-11} \cdot (2.36 \times 10^6)^2} $
+$M = \frac{4\pi^2 (3.844 \times 10^8)^3}{6.674 \times 10^{-11} \cdot (2.36 \times 10^6)^2}$
 
-$ M \approx 5.97 \times 10^{24} , \text{kg} $
+$M \approx 5.97 \times 10^{24} , \text{kg}$
 
 This matches Earth’s known mass, confirming the validity of the law.
 
@@ -118,11 +118,11 @@ Planets in the Solar System
 
 For planets orbiting the Sun (( M \approx 1.989 \times 10^{30} , \text{kg} )), Kepler’s Third Law can be simplified. Expressing ( r ) in astronomical units (AU, where 1 AU is Earth’s orbital radius) and ( T ) in years, the constant $frac{4\pi^2}{G M}  becomes approximately 1, so:
 
-$ T^2 \approx r^3 $
+$T^2 \approx r^3$
 
 For example, Jupiter’s orbital radius is about 5.2 AU, so its period is:
 
-$ T \approx \sqrt{(5.2)^3} \approx 11.86 , \text{years} $
+$T \approx \sqrt{(5.2)^3} \approx 11.86 , \text{years}$
 
 This agrees with observations.
 
