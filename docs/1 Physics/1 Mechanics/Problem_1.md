@@ -212,8 +212,11 @@ plt.grid(True)
 plt.show()
 ```
 
+Pıcture
+
 ![alt text](image-5.png)
 
+Code
 
 ```python
 import numpy as np
