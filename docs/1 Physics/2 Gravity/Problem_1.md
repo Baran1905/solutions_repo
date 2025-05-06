@@ -88,9 +88,9 @@ Exoplanet Detection: Kepler’s Third Law helps in characterizing exoplanetary s
 
 Satellite Orbits: The law is used to design orbits for artificial satellites, ensuring they maintain stable periods and altitudes.
 
-Real-World Examples
+### Real-World Examples
 
-The Moon’s Orbit Around Earth
+**The Moon’s Orbit Around Earth**
 
 
 
@@ -114,7 +114,7 @@ $M \approx 5.97 \times 10^{24} , \text{kg}$
 
 This matches Earth’s known mass, confirming the validity of the law.
 
-Planets in the Solar System
+**Planets in the Solar System**
 
 For planets orbiting the Sun (( M \approx 1.989 \times 10^{30} , \text{kg} )), Kepler’s Third Law can be simplified. Expressing ( r ) in astronomical units (AU, where 1 AU is Earth’s orbital radius) and ( T ) in years, the constant $frac{4\pi^2}{G M}  becomes approximately 1, so:
 
@@ -126,13 +126,13 @@ $T \approx \sqrt{(5.2)^3} \approx 11.86 , \text{years}$
 
 This agrees with observations.
 
-Computational Model
+**Computational Model**
 
 Below is a Python script that simulates circular orbits and verifies Kepler’s Third Law by plotting $( T^2 )$ versus $( r^3 )$.
 
  import numpy as np import matplotlib.pyplot as plt
 
-Constants
+**Constants**
 
 G = 6.674e-11 # Gravitational constant $(m^3 kg^-1 s^-2)$ M_sun = 1.989e30 # Mass of the Sun (kg) AU = 1.496e11 # 1 AU in meters year = 3.156e7 # 1 year in seconds
 
