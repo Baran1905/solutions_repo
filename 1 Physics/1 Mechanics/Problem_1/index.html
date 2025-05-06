@@ -356,28 +356,33 @@ plt.show()
 - Python code for simulations and visualizations.
 - Discussion of real-world applications and model limitations.</p>
 <p>Let me know if you’d like further refinements or additional scenarios (e.g., air resistance simulation)!</p>
-<p>import numpy as np
-import matplotlib.pyplot as plt</p>
-<h1 id="constants">Constants</h1>
-<p>v0 = 50  # initial velocity in m/s
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+v0 = 50  # initial velocity in m/s
 angles = [15, 45, 75]  # launch angles in degrees
-g = 9.81  # acceleration due to gravity in m/s^2</p>
-<h1 id="create-the-plot">Create the plot</h1>
-<p>plt.figure(figsize=(10, 6))</p>
-<p>for angle in angles:
+g = 9.81  # acceleration due to gravity in m/s^2
+
+# Create the plot
+plt.figure(figsize=(10, 6))
+
+for angle in angles:
     theta = np.radians(angle)  # convert degrees to radians
     t_flight = 2 * v0 * np.sin(theta) / g  # total time of flight
     t = np.linspace(0, t_flight, num=500)  # time points
     x = v0 * np.cos(theta) * t  # horizontal position
     y = v0 * np.sin(theta) * t - 0.5 * g * t**2  # vertical position
-    plt.plot(x, y, label=f'{angle}°')</p>
-<h1 id="customize-the-plot">Customize the plot</h1>
-<p>plt.title('Projectile Motion at 50 m/s with Different Angles')
+    plt.plot(x, y, label=f'{angle}°')
+
+# Customize the plot
+plt.title('Projectile Motion at 50 m/s with Different Angles')
 plt.xlabel('Horizontal Distance (m)')
 plt.ylabel('Vertical Height (m)')
 plt.legend()
 plt.grid(True)
-plt.show()</p>
+plt.show()
+</code></pre>
 <p><img alt="alt text" src="../image-5.png"/></p>
 </div>
 </div><footer>
