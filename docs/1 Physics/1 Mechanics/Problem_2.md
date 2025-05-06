@@ -116,6 +116,7 @@ Biomechanics: Describes gait or robotic motion under periodic forcing.
 
 The Python script below simulates the pendulum using Runge-Kutta, visualizing time series, phase portraits, Poincaré sections, resonance curve, and bifurcation diagram.
 
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -219,6 +220,7 @@ plt.title('Bifurcation Diagram (β = 0.1)')
 plt.grid(True)
 plt.savefig('bifurcation_diagram.png')
 plt.show()
+```
 
 ![alt text](image-2.png)
 ![alt text](image-3.png)
