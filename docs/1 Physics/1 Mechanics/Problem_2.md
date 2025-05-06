@@ -284,3 +284,63 @@ Simulate coupled pendulums for complex interactions.
 **Conclusion**
 
 The forced damped pendulum, governed by $\ddot{\theta} + 2\beta\dot{\theta} + \omega_0^2\sin(\theta) = A\cos(\omega t)$, exhibits rich dynamics from resonance to chaos. Simulations reveal parameter effects, with visualizations highlighting transitions. Applications span engineering and physics, and extensions could enhance realism.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+# Constants
+g = 9.81        # gravity (m/s^2)
+L = 1.0         # pendulum length (m)
+t_span = (0, 20)  # time interval
+t_eval = np.linspace(*t_span, 1000)
+theta0 = np.radians(45)  # initial angle (convert degrees to radians)
+omega0 = 0.0             # initial angular velocity
+
+# Equation of motion
+def pendulum(t, y, b, A, omega_f):
+    theta, omega = y
+    dtheta_dt = omega
+    domega_dt = -b * omega - (g / L) * np.sin(theta) + A * np.cos(omega_f * t)
+    return [dtheta_dt, domega_dt]
+
+# Scenario definitions
+scenarios = {
+    "Pure Pendulum (b=0, A=0)": {"b": 0.0, "A": 0.0, "omega_f": 0.0},
+    "Damped Pendulum (b=0.5, A=0)": {"b": 0.5, "A": 0.0, "omega_f": 0.0},
+    "Forced Pendulum (b=0, A=1)": {"b": 0.0, "A": 1.0, "omega_f": 2.0},
+}
+
+# Plotting
+fig, axes = plt.subplots(len(scenarios), 2, figsize=(12, 10))
+fig.suptitle("Pendulum Dynamics", fontsize=16)
+
+for i, (title, params) in enumerate(scenarios.items()):
+    sol = solve_ivp(pendulum, t_span, [theta0, omega0],
+                    args=(params["b"], params["A"], params["omega_f"]),
+                    t_eval=t_eval)
+
+    theta = sol.y[0]
+    omega = sol.y[1]
+    time = sol.t
+
+    # Angle vs Time
+    axes[i, 0].plot(time, theta)
+    axes[i, 0].set_title(f"{title} - Angle vs Time")
+    axes[i, 0].set_xlabel("Time (s)")
+    axes[i, 0].set_ylabel("Angle (rad)")
+    axes[i, 0].grid(True)
+
+    # Phase Diagram (Angle vs Angular Velocity)
+    axes[i, 1].plot(theta, omega)
+    axes[i, 1].set_title(f"{title} - Phase Diagram")
+    axes[i, 1].set_xlabel("Angle (rad)")
+    axes[i, 1].set_ylabel("Angular Velocity (rad/s)")
+    axes[i, 1].grid(True)
+
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+plt.show()
+```
+
+![alt text](image-7.png)
