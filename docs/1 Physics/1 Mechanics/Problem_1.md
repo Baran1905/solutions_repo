@@ -180,6 +180,7 @@ This response includes:
 
 Let me know if you’d like further refinements or additional scenarios (e.g., air resistance simulation)!
 
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -206,6 +207,6 @@ plt.ylabel('Vertical Height (m)')
 plt.legend()
 plt.grid(True)
 plt.show()
-
+```
 
 ![alt text](image-5.png)
