@@ -60,6 +60,8 @@
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#derivation-of-the-relationship-for-circular-orbits">Derivation of the Relationship for Circular Orbits</a>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#real-world-examples">Real-World Examples</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -216,8 +218,8 @@
 <p>Calculating Orbital Distances: If the mass of the central body is known (e.g., the Sun), the orbital radius of a planet can be determined from its orbital period, or vice versa.</p>
 <p>Exoplanet Detection: Kepler’s Third Law helps in characterizing exoplanetary systems by relating the orbital periods and distances of planets around distant stars.</p>
 <p>Satellite Orbits: The law is used to design orbits for artificial satellites, ensuring they maintain stable periods and altitudes.</p>
-<p>Real-World Examples</p>
-<p>The Moon’s Orbit Around Earth</p>
+<h3 id="real-world-examples">Real-World Examples</h3>
+<p><strong>The Moon’s Orbit Around Earth</strong></p>
 <p>Orbital Radius: Approximately ( r = 384,400 , \text{km} = 3.844 \times 10^8 , \text{m} )</p>
 <p>Orbital Period: Approximately ( T = 27.32 , \text{days} = 2.36 \times 10^6 , \text{s} )</p>
 <p>Earth’s Mass: Using Kepler’s Third Law:</p>
@@ -225,16 +227,16 @@
 <p><span class="arithmatex">\(M = \frac{4\pi^2 (3.844 \times 10^8)^3}{6.674 \times 10^{-11} \cdot (2.36 \times 10^6)^2}\)</span></p>
 <p><span class="arithmatex">\(M \approx 5.97 \times 10^{24} , \text{kg}\)</span></p>
 <p>This matches Earth’s known mass, confirming the validity of the law.</p>
-<p>Planets in the Solar System</p>
+<p><strong>Planets in the Solar System</strong></p>
 <p>For planets orbiting the Sun (( M \approx 1.989 \times 10^{30} , \text{kg} )), Kepler’s Third Law can be simplified. Expressing ( r ) in astronomical units (AU, where 1 AU is Earth’s orbital radius) and ( T ) in years, the constant $frac{4\pi^2}{G M}  becomes approximately 1, so:</p>
 <p><span class="arithmatex">\(T^2 \approx r^3\)</span></p>
 <p>For example, Jupiter’s orbital radius is about 5.2 AU, so its period is:</p>
 <p><span class="arithmatex">\(T \approx \sqrt{(5.2)^3} \approx 11.86 , \text{years}\)</span></p>
 <p>This agrees with observations.</p>
-<p>Computational Model</p>
+<p><strong>Computational Model</strong></p>
 <p>Below is a Python script that simulates circular orbits and verifies Kepler’s Third Law by plotting <span class="arithmatex">\(( T^2 )\)</span> versus <span class="arithmatex">\(( r^3 )\)</span>.</p>
 <p>import numpy as np import matplotlib.pyplot as plt</p>
-<p>Constants</p>
+<p><strong>Constants</strong></p>
 <p>G = 6.674e-11 # Gravitational constant <span class="arithmatex">\((m^3 kg^-1 s^-2)\)</span> M_sun = 1.989e30 # Mass of the Sun (kg) AU = 1.496e11 # 1 AU in meters year = 3.156e7 # 1 year in seconds</p>
 <p>Function to calculate orbital period</p>
 <p><span class="arithmatex">\(def orbital_period(r, M): return np.sqrt((4 * np.pi2 * r3) / (G * M))\)</span></p>
