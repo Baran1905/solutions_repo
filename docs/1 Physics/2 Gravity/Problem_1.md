@@ -1,12 +1,12 @@
 # Problem 1
 
-Kepler's Third Law: Orbital Period and Radius
+## Kepler's Third Law: Orbital Period and Radius
 
-Derivation of the Relationship for Circular Orbits
+### Derivation of the Relationship for Circular Orbits
 
 For a body in circular orbit, the gravitational force provides the centripetal force required for circular motion. Let’s derive Kepler’s Third Law step-by-step.
 
-Step 1: Gravitational Force
+**Step 1: Gravitational Force**
 
 The gravitational force between two masses ( M ) (central body) and ( m ) (orbiting body) at distance ( r ) (orbital radius) is:
 
@@ -14,33 +14,33 @@ $ F_g = \frac{G M m}{r^2} $
 
 $$where ( G ) is the gravitational constant (( G \approx 6.674 \times 10^{-11} , \text{m}^3 \text{kg}^{-1} \text{s}^{-2} )).$$
 
-Step 2: Centripetal Force
+**Step 2: Centripetal Force**
 
 For circular motion, the centripetal force required to keep the orbiting body moving at speed ( v ) in a circular path of radius ( r ) is:
 
-$ F_c = \frac{m v^2}{r} $
+$F_c = \frac{m v^2}{r}$
 
-Step 3: Equate Forces
+**Step 3: Equate Forces**
 
 Since the gravitational force provides the centripetal force:
 
-$frac{G M m}{r^2} = \frac{m v^2}{r} $
+$frac{G M m}{r^2} = \frac{m v^2}{r}$
 
 Simplify by canceling ( m ) (assuming ( m \neq 0 )) and multiplying through by ( r ):
 
 $frac{G M}{r} = v^2$
 
-Step 4: Orbital Velocity
+**Step 4: Orbital Velocity**
 
 The orbital period ( T ) is the time taken for one complete orbit. The circumference of the circular orbit is ( 2\pi r ), so the orbital velocity ( v ) is:
 
-$ v = \frac{2\pi r}{T} $
+$v = \frac{2\pi r}{T}$
 
 Square the velocity:
 
-$ v^2 = \frac{4\pi^2 r^2}{T^2} $
+$v^2 = \frac{4\pi^2 r^2}{T^2}$
 
-Step 5: Substitute and Simplify
+**Step 5: Substitute and Simplify**
 
 Substitute $( v^2 )$ into the force balance equation:
 
@@ -50,17 +50,17 @@ Multiply through by $( T^2 )$:
 
 $frac{G M T^2}{r} = 4\pi^2 r^2$ 
 
-Rearrange:
+**Rearrange:**
 
-$ T^2 = \frac{4\pi^2 r^3}{G M} $
+$T^2 = \frac{4\pi^2 r^3}{G M}$
 
 This is Kepler’s Third Law for circular orbits, showing that the square of the orbital period (( T^2 )) is proportional to the cube of the orbital radius (( r^3 )):
 
-$ T^2 \propto r^3 $
+$T^2 \propto r^3$
 
 The constant of proportionality is $frac{4\pi^2}{G M} , which depends on the mass of the central body.
 
-Implications for Astronomy
+**Implications for Astronomy**
 
 Kepler’s Third Law is a powerful tool in astronomy with several key applications:
 
@@ -70,7 +70,7 @@ Kepler’s Third Law is a powerful tool in astronomy with several key applicatio
 
 Determining Planetary Masses: By measuring the orbital period ( T ) and radius ( r ) of a satellite or planet, the mass of the central body ( M ) can be calculated using:
 
-$ M = \frac{4\pi^2 r^3}{G T^2} $
+$M = \frac{4\pi^2 r^3}{G T^2}$
 
 This is commonly used to estimate the masses of planets and stars by observing their moons or orbiting companions.
 
