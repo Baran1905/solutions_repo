@@ -180,3 +180,30 @@ This response includes:
 
 Let me know if you’d like further refinements or additional scenarios (e.g., air resistance simulation)!
 
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sabitler
+v0 = 50  # ilk hız (m/s)
+angles = [15, 45, 75]  # açı değerleri (derece)
+g = 9.81  # yerçekimi ivmesi (m/s^2)
+
+# Grafik ayarları
+plt.figure(figsize=(10, 6))
+
+for angle in angles:
+    theta = np.radians(angle)  # dereceyi radyana çevir
+    t_flight = 2 * v0 * np.sin(theta) / g  # uçuş süresi
+    t = np.linspace(0, t_flight, num=500)
+    x = v0 * np.cos(theta) * t
+    y = v0 * np.sin(theta) * t - 0.5 * g * t**2
+    plt.plot(x, y, label=f'{angle}°')
+
+plt.title('50 m/s hızla fırlatma - Farklı Açıların Etkisi')
+plt.xlabel('Yatay Mesafe (m)')
+plt.ylabel('Yükseklik (m)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+![alt text](image-5.png)
