@@ -209,4 +209,36 @@ plt.grid(True)
 plt.show()
 ```
 
+```python
 ![alt text](image-5.png)
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+speeds = [30, 40, 50]  # different initial speeds in m/s
+angle = 45  # fixed launch angle in degrees
+theta = np.radians(angle)
+g = 9.81  # gravity in m/s^2
+
+# Create the plot
+plt.figure(figsize=(10, 6))
+
+for v0 in speeds:
+    t_flight = 2 * v0 * np.sin(theta) / g  # total flight time
+    t = np.linspace(0, t_flight, num=500)  # time points
+    x = v0 * np.cos(theta) * t  # horizontal position
+    y = v0 * np.sin(theta) * t - 0.5 * g * t**2  # vertical position
+    plt.plot(x, y, label=f'{v0} m/s')
+
+# Customize the plot
+plt.title('Projectile Motion at 45° with Different Speeds')
+plt.xlabel('Horizontal Distance (m)')
+plt.ylabel('Vertical Height (m)')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+![alt text](image-6.png)
