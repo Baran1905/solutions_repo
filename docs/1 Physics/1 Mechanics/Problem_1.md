@@ -147,36 +147,7 @@ plt.grid(True)
 plt.show()
 ```
 ![alt text](image.png)
-![alt text](image-1.png) 
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Constants
-v0 = 50  # initial speed in m/s
-angles = [15, 45, 75]  # in degrees
-g = 9.81  # gravity in m/s^2
-
-# Plot setup
-plt.figure(figsize=(10, 6))
-
-for angle in angles:
-    theta = np.radians(angle)
-    t_flight = 2 * v0 * np.sin(theta) / g
-    t = np.linspace(0, t_flight, num=500)
-    x = v0 * np.cos(theta) * t
-    y = v0 * np.sin(theta) * t - 0.5 * g * t**2
-    plt.plot(x, y, label=f'{angle}°')
-
-plt.title('Projectile Motion for 50 m/s at Different Angles')
-plt.xlabel('Distance (m)')
-plt.ylabel('Height (m)')
-plt.legend()
-plt.grid(True)
-plt.show()
-
-![alt text](image-4.png)
-
+![alt text](image-1.png)
 ### Output Description
 
 1. **Range Plot**: Shows range vs. angle for $v_0 = 10, 20, 30 \, \text{m/s}$. Each curve peaks at $\theta = 45^\circ$, with higher $v_0$ yielding larger ranges.
