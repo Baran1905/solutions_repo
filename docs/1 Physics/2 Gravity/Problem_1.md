@@ -142,7 +142,7 @@ $def orbital_period(r, M): return np.sqrt((4 * np.pi2 * r3) / (G * M))$
 
 Orbital radii (in AU, converted to meters)
 
-$radii_au = np.array$0.39, 0.72, 1.0, 1.52, 5.2, 9.58, 19.18, 30.07])$ # Mercury to Neptune radii = radii_au * AU
+$radii_au$ = np.array(0.39, 0.72, 1.0, 1.52, 5.2, 9.58, 19.18, 30.07) # Mercury to Neptune radii = radii_au * AU
 
 Calculate periods
 
