@@ -10,7 +10,7 @@ For a body in circular orbit, the gravitational force provides the centripetal f
 
 The gravitational force between two masses ( M ) (central body) and ( m ) (orbiting body) at distance ( r ) (orbital radius) is:
 
-$ F_g = \frac{G M m}{r^2} $
+$F_g = \frac{G M m}{r^2}$
 
 $$where ( G ) is the gravitational constant (( G \approx 6.674 \times 10^{-11} , \text{m}^3 \text{kg}^{-1} \text{s}^{-2} )).$$
 
@@ -142,7 +142,7 @@ $def orbital_period(r, M): return np.sqrt((4 * np.pi2 * r3) / (G * M))$
 
 Orbital radii (in AU, converted to meters)
 
-$radii_au = np.array([0.39, 0.72, 1.0, 1.52, 5.2, 9.58, 19.18, 30.07])$ # Mercury to Neptune radii = radii_au * AU
+$radii_au = np.array$0.39, 0.72, 1.0, 1.52, 5.2, 9.58, 19.18, 30.07])$ # Mercury to Neptune radii = radii_au * AU
 
 Calculate periods
 
@@ -154,11 +154,11 @@ $T_squared = periods2 r_cubed = radii_au3$
 
 Plotting
 
-plt.figure(figsize=(10, 6)) $plt.scatter(r_cubed, T_squared, color='blue', label='Planets')  plt.plot(r_cubed, r_cubed, color='red', linestyle='--', label='T^2 = r^3') plt.xlabel('r^3 (AU^3)') plt.ylabel('T^2 (years^2)') plt.title('Kepler’s Third Law: T^2 vs r^3') plt.legend() plt.grid(True) plt.savefig('kepler_third_law.png') plt.close()
+plt.figure(figsize=(10, 6)) plt.scatter(r_cubed, T_squared, color='blue', label='Planets')  plt.plot(r_cubed, r_cubed, color='red', linestyle='--', label='T^2 = r^3') plt.xlabel('r^3 (AU^3)') plt.ylabel('T^2 (years^2)') plt.title('Kepler’s Third Law: T^2 vs r^3') plt.legend() plt.grid(True) plt.savefig('kepler_third_law.png') plt.close()
 
 Simulate circular orbit visualization
 
-def plot_orbit(r, title): theta = np.linspace(0, 2*np.pi, 100) x = r * np.cos(theta) / AU y = r * np.sin(theta) / AU plt.figure(figsize=(6, 6)) plt.plot(x, y, label=f'Orbit (r = {r/AU:.2f} AU)') plt.scatter([0], [0], color='orange', s=100, label='Sun') plt.xlabel('X (AU)') plt.ylabel('Y (AU)') plt.title(title) plt.legend() plt.grid(True) plt.axis('equal') plt.savefig(f'orbit_{r/AU:.2f}.png') plt.close()
+def plot_orbit(r, title): theta = np.linspace(0, 2*np.pi, 100) x = r * np.cos(theta) / AU y = r * np.sin(theta) / AU plt.figure(figsize=(6, 6)) plt.plot(x, y, label=f'Orbit (r = {r/AU:.2f} AU)') plt.scatter$0, [0], color='orange', s=100, label='Sun' plt.xlabel('X (AU)') plt.ylabel('Y (AU)') plt.title(title) plt.legend() plt.grid(True) plt.axis('equal') plt.savefig(f'orbit_{r/AU:.2f}.png') plt.close()
 
 Plot orbits for Earth and Jupiter
 
