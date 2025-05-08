@@ -185,7 +185,7 @@
 <p>For a body in circular orbit, the gravitational force provides the centripetal force required for circular motion. Let’s derive Kepler’s Third Law step-by-step.</p>
 <p><strong>Step 1: Gravitational Force</strong></p>
 <p>The gravitational force between two masses ( M ) (central body) and ( m ) (orbiting body) at distance ( r ) (orbital radius) is:</p>
-<p>$ F_g = \frac{G M m}{r^2} $</p>
+<p><span class="arithmatex">\(F_g = \frac{G M m}{r^2}\)</span></p>
 <div class="arithmatex">\[where ( G ) is the gravitational constant (( G \approx 6.674 \times 10^{-11} , \text{m}^3 \text{kg}^{-1} \text{s}^{-2} )).\]</div>
 <p><strong>Step 2: Centripetal Force</strong></p>
 <p>For circular motion, the centripetal force required to keep the orbiting body moving at speed ( v ) in a circular path of radius ( r ) is:</p>
@@ -241,15 +241,15 @@
 <p>Function to calculate orbital period</p>
 <p><span class="arithmatex">\(def orbital_period(r, M): return np.sqrt((4 * np.pi2 * r3) / (G * M))\)</span></p>
 <p>Orbital radii (in AU, converted to meters)</p>
-<p><span class="arithmatex">\(radii_au = np.array([0.39, 0.72, 1.0, 1.52, 5.2, 9.58, 19.18, 30.07])\)</span> # Mercury to Neptune radii = radii_au * AU</p>
+<p><span class="arithmatex">\(radii_au = np.array\)</span>0.39, 0.72, 1.0, 1.52, 5.2, 9.58, 19.18, 30.07])$ # Mercury to Neptune radii = radii_au * AU</p>
 <p>Calculate periods</p>
 <p>periods = orbital_period(radii, M_sun) / year # Convert to years</p>
 <p>Verify <span class="arithmatex">\(T^2\)</span> vs <span class="arithmatex">\(r^3\)</span></p>
 <p><span class="arithmatex">\(T_squared = periods2 r_cubed = radii_au3\)</span></p>
 <p>Plotting</p>
-<p>plt.figure(figsize=(10, 6)) $plt.scatter(r_cubed, T_squared, color='blue', label='Planets')  plt.plot(r_cubed, r_cubed, color='red', linestyle='--', label='T^2 = r^3') plt.xlabel('r^3 (AU^3)') plt.ylabel('T^2 (years^2)') plt.title('Kepler’s Third Law: T^2 vs r^3') plt.legend() plt.grid(True) plt.savefig('kepler_third_law.png') plt.close()</p>
+<p>plt.figure(figsize=(10, 6)) plt.scatter(r_cubed, T_squared, color='blue', label='Planets')  plt.plot(r_cubed, r_cubed, color='red', linestyle='--', label='T^2 = r^3') plt.xlabel('r^3 (AU^3)') plt.ylabel('T^2 (years^2)') plt.title('Kepler’s Third Law: T^2 vs r^3') plt.legend() plt.grid(True) plt.savefig('kepler_third_law.png') plt.close()</p>
 <p>Simulate circular orbit visualization</p>
-<p>def plot_orbit(r, title): theta = np.linspace(0, 2*np.pi, 100) x = r * np.cos(theta) / AU y = r * np.sin(theta) / AU plt.figure(figsize=(6, 6)) plt.plot(x, y, label=f'Orbit (r = {r/AU:.2f} AU)') plt.scatter([0], [0], color='orange', s=100, label='Sun') plt.xlabel('X (AU)') plt.ylabel('Y (AU)') plt.title(title) plt.legend() plt.grid(True) plt.axis('equal') plt.savefig(f'orbit_{r/AU:.2f}.png') plt.close()</p>
+<p>def plot_orbit(r, title): theta = np.linspace(0, 2*np.pi, 100) x = r * np.cos(theta) / AU y = r * np.sin(theta) / AU plt.figure(figsize=(6, 6)) plt.plot(x, y, label=f'Orbit (r = {r/AU:.2f} AU)') plt.scatter$0, [0], color='orange', s=100, label='Sun' plt.xlabel('X (AU)') plt.ylabel('Y (AU)') plt.title(title) plt.legend() plt.grid(True) plt.axis('equal') plt.savefig(f'orbit_{r/AU:.2f}.png') plt.close()</p>
 <p>Plot orbits for Earth and Jupiter</p>
 <p>plot_orbit(1.0 * AU, 'Earth’s Orbit') plot_orbit(5.2 * AU, 'Jupiter’s Orbit')</p>
 </div>
