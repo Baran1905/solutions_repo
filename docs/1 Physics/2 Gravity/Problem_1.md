@@ -156,9 +156,19 @@ $T_squared = periods2 r_cubed = radii_au3$
 
 ### 📈 Kepler's Third Law Plot
 
-```python
+ ```python
+import matplotlib.pyplot as plt
+
 plt.figure(figsize=(10, 6))
 plt.scatter(r_cubed, T_squared, color='blue', label='Planets')
+plt.plot(r_cubed, r_cubed, color='red', linestyle='--', label='T^2 = r^3')
+plt.xlabel('r^3 (AU^3)')
+plt.ylabel('T^2 (years^2)')
+plt.title('Kepler’s Third Law: T^2 vs r^3')
+plt.legend()
+plt.grid(True)
+plt.savefig('kepler_third_law.png')
+plt.close()
 plt.plot(r_cubed, r_cubed, color='red', linestyle='--', label='T^2 = r^3')
 plt.xlabel('r^3 (AU^3)')
 plt.ylabel('T^2 (years^2)')
