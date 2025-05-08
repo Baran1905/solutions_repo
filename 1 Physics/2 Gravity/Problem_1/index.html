@@ -66,8 +66,6 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#keplers-third-law-plot">📈 Kepler's Third Law Plot</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#simulate-circular-orbit-visualization">Simulate circular orbit visualization</a>
-</li>
 <li class="toctree-l4"><a class="reference internal" href="#plot-orbits-for-earth-and-jupiter">Plot orbits for Earth and Jupiter</a>
 </li>
 </ul>
@@ -256,7 +254,9 @@
 <p><span class="arithmatex">\(T_squared = periods2 r_cubed = radii_au3\)</span></p>
 <h3 id="plotting">Plotting</h3>
 <h3 id="keplers-third-law-plot">📈 Kepler's Third Law Plot</h3>
-<pre><code class="language-python">plt.figure(figsize=(10, 6))
+<p>```python
+import matplotlib.pyplot as plt</p>
+<p>plt.figure(figsize=(10, 6))
 plt.scatter(r_cubed, T_squared, color='blue', label='Planets')
 plt.plot(r_cubed, r_cubed, color='red', linestyle='--', label='T^2 = r^3')
 plt.xlabel('r^3 (AU^3)')
@@ -266,9 +266,19 @@ plt.legend()
 plt.grid(True)
 plt.savefig('kepler_third_law.png')
 plt.close()
-</code></pre>
-<h3 id="simulate-circular-orbit-visualization">Simulate circular orbit visualization</h3>
-<pre><code class="language-python">def plot_orbit(r, title):
+plt.plot(r_cubed, r_cubed, color='red', linestyle='--', label='T^2 = r^3')
+plt.xlabel('r^3 (AU^3)')
+plt.ylabel('T^2 (years^2)')
+plt.title('Kepler’s Third Law: T^2 vs r^3')
+plt.legend()
+plt.grid(True)
+plt.savefig('kepler_third_law.png')
+plt.close()</p>
+<pre><code>
+### Simulate circular orbit visualization
+
+```python
+def plot_orbit(r, title):
     theta = np.linspace(0, 2*np.pi, 100)
     x = r * np.cos(theta) / AU
     y = r * np.sin(theta) / AU
