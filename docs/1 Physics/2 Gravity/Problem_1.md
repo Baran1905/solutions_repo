@@ -1,4 +1,4 @@
-Great — you’re diving into Kepler’s Third Law, a foundational concept in orbital mechanics. Here's a structured Markdown document outline with integrated Python code, explanations, and visualizations for your task. You can use this in a Jupyter notebook or Markdown environment like JupyterBook or GitHub Pages.
+
 
 ---
 
