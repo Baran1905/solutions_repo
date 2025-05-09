@@ -112,10 +112,4 @@ $$
 T^2 = \frac{4\pi^2 a^3}{G M}
 $$
 
-Applications include:
-
-* Binary stars
-* Exoplanets
-* Spacecraft trajectory planning
-
 ---
