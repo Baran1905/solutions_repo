@@ -104,6 +104,8 @@ plt.legend()
 plt.show()
 ```
 
+![alt text](image-3.png)
+
 ---
 
 ##  Elliptical Orbits and Generalization
