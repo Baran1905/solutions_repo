@@ -212,3 +212,708 @@ plt.tight_layout()
 plt.show()
 ```
 ![alt text](image-2.png)
+
+To use Kepler's Third Law to find the mass of Earth and the Sun, we need to apply the law in its gravitational form, which relates the orbital period and distance of an orbiting body to the mass of the central body. The formula is:
+
+𝑇
+2
+=
+4
+𝜋
+2
+𝐺
+𝑀
+𝑎
+3
+T 
+2
+ = 
+GM
+4π 
+2
+ 
+​
+ a 
+3
+ 
+Where:
+
+𝑇
+T is the orbital period (in seconds),
+𝑎
+a is the semi-major axis of the orbit (in meters),
+𝐺
+G is the gravitational constant (
+6.67430
+×
+1
+0
+−
+11
+ 
+m
+3
+kg
+−
+1
+s
+−
+2
+6.67430×10 
+−11
+ m 
+3
+ kg 
+−1
+ s 
+−2
+ ),
+𝑀
+M is the mass of the central body (in kilograms).
+We can rearrange this to solve for the mass 
+𝑀
+M:
+
+𝑀
+=
+4
+𝜋
+2
+𝑎
+3
+𝐺
+𝑇
+2
+M= 
+GT 
+2
+ 
+4π 
+2
+ a 
+3
+ 
+​
+ 
+Let’s calculate the masses step-by-step.
+
+1. Mass of the Sun
+To find the mass of the Sun, we use Earth’s orbit around the Sun as the reference. Earth orbits the Sun, so the Sun is the central body.
+
+Semi-major axis (
+𝑎
+a): The average distance from Earth to the Sun is approximately 1 astronomical unit (AU), which is 
+1.496
+×
+1
+0
+11
+ 
+m
+1.496×10 
+11
+ m.
+Orbital period (
+𝑇
+T): Earth’s orbital period is 1 year, which is approximately 
+365.25
+ 
+days
+×
+86
+,
+400
+ 
+s/day
+=
+31
+,
+557
+,
+600
+ 
+s
+365.25days×86,400s/day=31,557,600s.
+Gravitational constant (
+𝐺
+G): 
+6.67430
+×
+1
+0
+−
+11
+ 
+m
+3
+kg
+−
+1
+s
+−
+2
+6.67430×10 
+−11
+ m 
+3
+ kg 
+−1
+ s 
+−2
+ .
+Plugging in the values:
+
+𝑀
+Sun
+=
+4
+𝜋
+2
+(
+1.496
+×
+1
+0
+11
+)
+3
+6.67430
+×
+1
+0
+−
+11
+⋅
+(
+31
+,
+557
+,
+600
+)
+2
+M 
+Sun
+​
+ = 
+6.67430×10 
+−11
+ ⋅(31,557,600) 
+2
+ 
+4π 
+2
+ (1.496×10 
+11
+ ) 
+3
+ 
+​
+ 
+First, compute the components:
+
+𝑎
+3
+=
+(
+1.496
+×
+1
+0
+11
+)
+3
+=
+3.347
+×
+1
+0
+33
+ 
+m
+3
+a 
+3
+ =(1.496×10 
+11
+ ) 
+3
+ =3.347×10 
+33
+ m 
+3
+ ,
+𝑇
+2
+=
+(
+31
+,
+557
+,
+600
+)
+2
+=
+9.966
+×
+1
+0
+15
+ 
+s
+2
+T 
+2
+ =(31,557,600) 
+2
+ =9.966×10 
+15
+ s 
+2
+ ,
+4
+𝜋
+2
+≈
+39.478
+4π 
+2
+ ≈39.478,
+𝐺
+=
+6.67430
+×
+1
+0
+−
+11
+G=6.67430×10 
+−11
+ .
+Numerator:
+
+4
+𝜋
+2
+𝑎
+3
+=
+39.478
+⋅
+3.347
+×
+1
+0
+33
+≈
+1.322
+×
+1
+0
+35
+4π 
+2
+ a 
+3
+ =39.478⋅3.347×10 
+33
+ ≈1.322×10 
+35
+ 
+Denominator:
+
+𝐺
+𝑇
+2
+=
+6.67430
+×
+1
+0
+−
+11
+⋅
+9.966
+×
+1
+0
+15
+≈
+6.652
+×
+1
+0
+5
+GT 
+2
+ =6.67430×10 
+−11
+ ⋅9.966×10 
+15
+ ≈6.652×10 
+5
+ 
+So:
+
+𝑀
+Sun
+=
+1.322
+×
+1
+0
+35
+6.652
+×
+1
+0
+5
+≈
+1.989
+×
+1
+0
+30
+ 
+kg
+M 
+Sun
+​
+ = 
+6.652×10 
+5
+ 
+1.322×10 
+35
+ 
+​
+ ≈1.989×10 
+30
+ kg
+Mass of the Sun: 
+1.989
+×
+1
+0
+30
+ 
+kg
+1.989×10 
+30
+ kg.
+
+2. Mass of the Earth
+To find the mass of Earth, we use the Moon’s orbit around Earth, as Earth is the central body for the Moon.
+
+Semi-major axis (
+𝑎
+a): The average distance from Earth to the Moon is approximately 
+3.844
+×
+1
+0
+8
+ 
+m
+3.844×10 
+8
+ m.
+Orbital period (
+𝑇
+T): The Moon’s orbital period (sidereal month) is approximately 27.322 days, which is 
+27.322
+×
+86
+,
+400
+=
+2
+,
+360
+,
+620
+ 
+s
+27.322×86,400=2,360,620s.
+Gravitational constant (
+𝐺
+G): 
+6.67430
+×
+1
+0
+−
+11
+ 
+m
+3
+kg
+−
+1
+s
+−
+2
+6.67430×10 
+−11
+ m 
+3
+ kg 
+−1
+ s 
+−2
+ .
+Plugging in the values:
+
+𝑀
+Earth
+=
+4
+𝜋
+2
+(
+3.844
+×
+1
+0
+8
+)
+3
+6.67430
+×
+1
+0
+−
+11
+⋅
+(
+2
+,
+360
+,
+620
+)
+2
+M 
+Earth
+​
+ = 
+6.67430×10 
+−11
+ ⋅(2,360,620) 
+2
+ 
+4π 
+2
+ (3.844×10 
+8
+ ) 
+3
+ 
+​
+ 
+First, compute the components:
+
+𝑎
+3
+=
+(
+3.844
+×
+1
+0
+8
+)
+3
+=
+5.677
+×
+1
+0
+25
+ 
+m
+3
+a 
+3
+ =(3.844×10 
+8
+ ) 
+3
+ =5.677×10 
+25
+ m 
+3
+ ,
+𝑇
+2
+=
+(
+2
+,
+360
+,
+620
+)
+2
+=
+5.573
+×
+1
+0
+12
+ 
+s
+2
+T 
+2
+ =(2,360,620) 
+2
+ =5.573×10 
+12
+ s 
+2
+ ,
+4
+𝜋
+2
+≈
+39.478
+4π 
+2
+ ≈39.478.
+Numerator:
+
+4
+𝜋
+2
+𝑎
+3
+=
+39.478
+⋅
+5.677
+×
+1
+0
+25
+≈
+2.241
+×
+1
+0
+27
+4π 
+2
+ a 
+3
+ =39.478⋅5.677×10 
+25
+ ≈2.241×10 
+27
+ 
+Denominator:
+
+𝐺
+𝑇
+2
+=
+6.67430
+×
+1
+0
+−
+11
+⋅
+5.573
+×
+1
+0
+12
+≈
+3.720
+×
+1
+0
+2
+GT 
+2
+ =6.67430×10 
+−11
+ ⋅5.573×10 
+12
+ ≈3.720×10 
+2
+ 
+So:
+
+𝑀
+Earth
+=
+2.241
+×
+1
+0
+27
+3.720
+×
+1
+0
+2
+≈
+6.024
+×
+1
+0
+24
+ 
+kg
+M 
+Earth
+​
+ = 
+3.720×10 
+2
+ 
+2.241×10 
+27
+ 
+​
+ ≈6.024×10 
+24
+ kg
+Mass of the Earth: 
+6.024
+×
+1
+0
+24
+ 
+kg
+6.024×10 
+24
+ kg.
+
+Final Answer
+Mass of the Earth: 
+6.024
+×
+1
+0
+24
+ 
+kg
+6.024×10 
+24
+ kg
+Mass of the Sun: 
+1.989
+×
+1
+0
+30
+ 
+kg
+1.989×10 
+30
+ kg
