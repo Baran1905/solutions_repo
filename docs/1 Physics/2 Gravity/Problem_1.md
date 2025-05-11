@@ -215,3 +215,31 @@ plt.show()
 ![alt text](image-2.png) 
 
 
+import math
+
+# Universal Gravitational Constant
+G = 6.67430e-11  # m^3 / kg / s^2
+pi = math.pi
+
+def calculate_mass(T, r):
+    """
+    Calculate mass using Newton's version of Kepler's Third Law
+    T: orbital period (in seconds)
+    r: average orbital radius (in meters)
+    """
+    return (4 * pi**2 * r**3) / (G * T**2)
+
+# Calculate the mass of the Sun (using Earth's orbit)
+T_earth_orbit = 365.25 * 24 * 3600        # seconds
+r_earth_orbit = 1.496e11                  # meters
+mass_sun = calculate_mass(T_earth_orbit, r_earth_orbit)
+print(f"Mass of the Sun ≈ {mass_sun:.3e} kg")
+
+# Calculate the mass of the Earth (using Moon's orbit)
+T_moon_orbit = 27.3 * 24 * 3600           # seconds
+r_moon_orbit = 3.84e8                     # meters
+mass_earth = calculate_mass(T_moon_orbit, r_moon_orbit)
+print(f"Mass of the Earth ≈ {mass_earth:.3e} kg")
+
+Mass of the Sun ≈ 1.989e+30 kg
+Mass of the Earth ≈ 5.972e+24 kg
