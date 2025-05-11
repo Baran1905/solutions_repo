@@ -211,4 +211,7 @@ plt.axis('equal')  # Equal scaling of axes
 plt.tight_layout()
 plt.show()
 ```
+
+![alt text](image-2.png) 
+
 ![alt text](image-2.png)
