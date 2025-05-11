@@ -366,6 +366,29 @@ plt.tight_layout()
 plt.show()
 </code></pre>
 <p><img alt="alt text" src="../image-2.png"/> </p>
+<p>import math</p>
+<h1 id="universal-gravitational-constant">Universal Gravitational Constant</h1>
+<p>G = 6.67430e-11  # m^3 / kg / s^2
+pi = math.pi</p>
+<p>def calculate_mass(T, r):
+    """
+    Calculate mass using Newton's version of Kepler's Third Law
+    T: orbital period (in seconds)
+    r: average orbital radius (in meters)
+    """
+    return (4 * pi<strong>2 * r</strong>3) / (G * T**2)</p>
+<h1 id="calculate-the-mass-of-the-sun-using-earths-orbit">Calculate the mass of the Sun (using Earth's orbit)</h1>
+<p>T_earth_orbit = 365.25 * 24 * 3600        # seconds
+r_earth_orbit = 1.496e11                  # meters
+mass_sun = calculate_mass(T_earth_orbit, r_earth_orbit)
+print(f"Mass of the Sun ≈ {mass_sun:.3e} kg")</p>
+<h1 id="calculate-the-mass-of-the-earth-using-moons-orbit">Calculate the mass of the Earth (using Moon's orbit)</h1>
+<p>T_moon_orbit = 27.3 * 24 * 3600           # seconds
+r_moon_orbit = 3.84e8                     # meters
+mass_earth = calculate_mass(T_moon_orbit, r_moon_orbit)
+print(f"Mass of the Earth ≈ {mass_earth:.3e} kg")</p>
+<p>Mass of the Sun ≈ 1.989e+30 kg
+Mass of the Earth ≈ 5.972e+24 kg</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
