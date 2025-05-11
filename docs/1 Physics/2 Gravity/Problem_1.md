@@ -215,36 +215,30 @@ plt.show()
 ![alt text](image-2.png) 
 
 
-import math
+ import math
 
-# Gravitational constant
-G = 6.67430e-11  # m^3 kg^-1 s^-2
+# Constants
+G = 6.67430e-11  # Gravitational constant in m^3 kg^-1 s^-2
 pi = math.pi
 
+# Function to calculate mass using Kepler's Third Law
 def calculate_mass(T, r):
-    """
-    Calculate the mass of a central body using Newton's version of Kepler's Third Law.
-    
-    Parameters:
-    T (float): Orbital period in seconds
-    r (float): Orbital radius in meters
-    
-    Returns:
-    float: Mass in kilograms
-    """
+    # T in seconds, r in meters
+    # T^2 = (4 * pi^2 / (G * M)) * r^3
+    # M = (4 * pi^2 * r^3) / (G * T^2)
     return (4 * pi**2 * r**3) / (G * T**2)
 
-# Sun's mass based on Earth's orbit
-T_earth = 365.25 * 24 * 3600       # Orbital period in seconds
-r_earth = 1.496e11                 # Orbital radius in meters
-mass_sun = calculate_mass(T_earth, r_earth)
-print(f"Mass of the Sun ≈ {mass_sun:.3e} kg")
-
-# Earth's mass based on Moon's orbit
-T_moon = 27.3 * 24 * 3600          # Orbital period in seconds
-r_moon = 3.84e8                    # Orbital radius in meters
+# Earth's mass using Moon's orbit
+T_moon = 27.322 * 24 * 3600  # Moon's orbital period in seconds
+r_moon = 384400 * 1000       # Moon's orbital radius in meters
 mass_earth = calculate_mass(T_moon, r_moon)
-print(f"Mass of the Earth ≈ {mass_earth:.3e} kg")
+ 
 
+# Sun's mass using Earth's orbit
+T_earth = 365.256 * 24 * 3600  # Earth's orbital period in seconds
+r_earth = 149.6e6 * 1000       # Earth's orbital radius in meters
+mass_sun = calculate_mass(T_earth, r_earth)
 
-
+# Print results
+print(f"Mass of Earth: {mass_earth:.2e} kg")
+print(f"Mass of Sun: {mass_sun:.2e} kg")
