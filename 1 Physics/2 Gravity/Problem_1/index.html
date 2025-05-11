@@ -368,25 +368,24 @@ plt.show()
 <p><img alt="alt text" src="../image-2.png"/> </p>
 <p>import math</p>
 <h1 id="constants">Constants</h1>
-<p>G = 6.67430e-11  # Gravitational constant in m^3 kg^-1 s^-2
+<p><span class="arithmatex">\(G = 6.67430e-11\)</span>  # Gravitational constant in <span class="arithmatex">\(m^3 kg^-1 s^-2\)</span>
 pi = math.pi</p>
 <h1 id="function-to-calculate-mass-using-keplers-third-law">Function to calculate mass using Kepler's Third Law</h1>
-<p>def calculate_mass(T, r):
-    # T in seconds, r in meters
-    # T^2 = (4 * pi^2 / (G * M)) * r^3
-    # M = (4 * pi^2 * r^3) / (G * T^2)
-    return (4 * pi<strong>2 * r</strong>3) / (G * T**2)</p>
+<p><span class="arithmatex">\(def calculate_mass(T, r):\)</span>
+     T in seconds, r in meters
+     <span class="arithmatex">\(T^2 = (4 \ pi^2 / (G \ M)) \ r^3\)</span>
+<span class="arithmatex">\(M = (4 \ pi^2 \ r^3) / (G \ T^2)\)</span>
+    return <span class="arithmatex">\((4 \ pi^2 \ r^3) / (G \ T^2)\)</span></p>
 <h1 id="earths-mass-using-moons-orbit">Earth's mass using Moon's orbit</h1>
-<p>T_moon = 27.322 * 24 * 3600  # Moon's orbital period in seconds
-r_moon = 384400 * 1000       # Moon's orbital radius in meters
+<p><span class="arithmatex">\(T_moon = 27.322 \times 24 \times 3600\)</span>  # Moon's orbital period in seconds</p>
+<p><span class="arithmatex">\(r_moon = 384400 \times 1000\)</span>      # Moon's orbital radius in meters
 mass_earth = calculate_mass(T_moon, r_moon)</p>
 <h1 id="suns-mass-using-earths-orbit">Sun's mass using Earth's orbit</h1>
-<p>T_earth = 365.256 * 24 * 3600  # Earth's orbital period in seconds
-r_earth = 149.6e6 * 1000       # Earth's orbital radius in meters
+<p>$T_earth = 365.256 \times 24 \times 3600 $ # Earth's orbital period in seconds</p>
+<p>$r_earth = 149.6e6 \times 1000 $      # Earth's orbital radius in meters
 mass_sun = calculate_mass(T_earth, r_earth)</p>
-<h1 id="print-results">Print results</h1>
-<p>print(f"Mass of Earth: {mass_earth:.2e} kg")
-print(f"Mass of Sun: {mass_sun:.2e} kg")</p>
+<p>Mass of Earth: ~5.97e24 kg</p>
+<p>Mass of Sun: ~1.99e30 kg</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
