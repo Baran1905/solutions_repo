@@ -1,7 +1,20 @@
 # Problem 2 
- Escape Velocities and Cosmic Velocities
- Definitions and Physical Meaning
-First Cosmic Velocity (Orbital Velocity):
+
+**Motivation**
+
+The concept of escape velocity is fundamental to understanding the conditions required for an object to overcome the gravitational influence of a celestial body. Building upon this idea, the definitions of the first, second, and third cosmic velocities establish the critical thresholds for orbital motion, planetary escape, and departure from an entire star system. These velocities represent the minimum speeds necessary for different levels of space travel:
+
+• First cosmic velocity allows an object to enter stable orbit around a planet.
+
+• Second cosmic velocity enables it to escape the planet's gravitational pull.
+
+• Third cosmic velocity is required to escape the gravitational influence of the Sun from Earth’s orbit.
+
+Understanding these velocities is essential for designing and executing space missions — from launching satellites into Earth orbit, to sending robotic explorers to other planets, and ultimately, planning interstellar travel. These principles lie at the heart of modern astronautics and drive the progress of humanity’s exploration of space.
+
+# Escape Velocities and Cosmic Velocities
+## Definitions and Physical Meaning
+### First Cosmic Velocity (Orbital Velocity):
 
 Definition: The minimum velocity needed for a body to enter a stable circular orbit just above the surface of a celestial body.
 
