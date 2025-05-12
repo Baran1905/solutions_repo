@@ -228,16 +228,16 @@ $def calculate_mass(T, r):$
     return $(4 \pi^2 \ r^3) / (G \ T^2)$
 
 # Earth's mass using Moon's orbit
-$T_moon = 27.322 \times 24 \times 3600$  # Moon's orbital period in seconds
+$T_{moon} = 27.322 \times 24 \times 3600$  # Moon's orbital period in seconds
 
-$r_moon = 384400 \times 1000$      # Moon's orbital radius in meters
+$r_{moon} = 384400 \times 1000$      # Moon's orbital radius in meters
 mass_earth = calculate_mass(T_moon, r_moon)
  
 
 # Sun's mass using Earth's orbit
-$T_earth = 365.256 \times 24 \times 3600$ # Earth's orbital period in seconds
+$T_{earth} = 365.256 \times 24 \times 3600$ # Earth's orbital period in seconds
 
-$r_earth = 149.6e6 \times 1000$      # Earth's orbital radius in meters
+$r_{earth} = 149.6e6 \times 1000$      # Earth's orbital radius in meters
 mass_sun = calculate_mass(T_earth, r_earth)
 
 Mass of Earth: ~5.97e24 kg
