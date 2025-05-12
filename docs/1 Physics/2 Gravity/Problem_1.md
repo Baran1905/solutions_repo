@@ -223,9 +223,9 @@ pi = math.pi
 # Function to calculate mass using Kepler's Third Law
 $def calculate_mass(T, r):$
      T in seconds, r in meters
-     $T^2 = (4 \ pi^2 / (G \ M)) \ r^3$
-     $M = (4 \ pi^2 \ r^3) / (G \ T^2)$
-    return $(4 \ pi^2 \ r^3) / (G \ T^2)$
+     $T^2 = (4 \pi^2 / (G \ M)) \ r^3$
+     $M = (4 \pi^2 \ r^3) / (G \ T^2)$
+    return $(4 \pi^2 \ r^3) / (G \ T^2)$
 
 # Earth's mass using Moon's orbit
 $T_moon = 27.322 \times 24 \times 3600$  # Moon's orbital period in seconds
@@ -235,9 +235,9 @@ mass_earth = calculate_mass(T_moon, r_moon)
  
 
 # Sun's mass using Earth's orbit
-$T_earth = 365.256 \times 24 \times 3600 $ # Earth's orbital period in seconds
+$T_earth = 365.256 \times 24 \times 3600$ # Earth's orbital period in seconds
 
-$r_earth = 149.6e6 \times 1000 $      # Earth's orbital radius in meters
+$r_earth = 149.6e6 \times 1000$      # Earth's orbital radius in meters
 mass_sun = calculate_mass(T_earth, r_earth)
 
 Mass of Earth: ~5.97e24 kg
