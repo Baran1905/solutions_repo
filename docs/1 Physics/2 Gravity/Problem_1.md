@@ -67,46 +67,14 @@ $$
 
 Using $T^2 = \frac{4\pi^2 r^3}{GM}$, this checks out with the known mass of Earth $(5.97 \times 10^{24} \text{kg})$.
 
+Mass of Earth: ~5.97e24 kg
+
+Mass of Sun: ~1.99e30 kg
+
 ### 2. Planets in the Solar System
 
 Plotting $\log(T^2)$ vs $\log(r^3)$ gives a straight line—evidence of Kepler’s Law.
 
----
-
-##  Computational Simulation (Python)
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Constants
-G = 6.67430e-11  # m^3 kg^-1 s^-2
-M = 1.989e30     # kg (mass of the Sun)
-
-# Orbital radii from 0.1 AU to 30 AU
-radii = np.linspace(0.1, 30, 100) * 1.496e11  # in meters
-
-# Calculate orbital periods using Kepler's third law
-T = 2 * np.pi * np.sqrt(radii**3 / (G * M))
-
-# Convert radius to AU and period to years for easier interpretation
-radii_AU = radii / 1.496e11
-T_years = T / (60 * 60 * 24 * 365.25)
-
-# Plot
-plt.figure(figsize=(8,6))
-plt.loglog(radii_AU, T_years, label='Kepler’s Third Law')
-plt.xlabel('Orbital Radius (AU)')
-plt.ylabel('Orbital Period (years)')
-plt.title('Orbital Period vs Orbital Radius')
-plt.grid(True, which='both')
-plt.legend()
-plt.show()
-```
-
-![alt text](image-3.png)
-
----
 
 ##  Elliptical Orbits and Generalization
 
@@ -212,34 +180,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![alt text](image-2.png) 
- 
- import math
-
-# Constants
-$G = 6.67430e-11$  # Gravitational constant in $m^3 kg^-1 s^-2$
-pi = math.pi
-
-# Function to calculate mass using Kepler's Third Law
-$def calculate_mass(T, r):$
-     T in seconds, r in meters
-     $T^2 = (4 \pi^2 / (G \ M)) \ r^3$
-     $M = (4 \pi^2 \ r^3) / (G \ T^2)$
-    return $(4 \pi^2 \ r^3) / (G \ T^2)$
-
-# Earth's mass using Moon's orbit
-$T_{moon} = 27.322 \times 24 \times 3600$  # Moon's orbital period in seconds
-
-$r_{moon} = 384400 \times 1000$      # Moon's orbital radius in meters
-mass_earth = calculate_mass(T_moon, r_moon)
  
 
-# Sun's mass using Earth's orbit
-$T_{earth} = 365.256 \times 24 \times 3600$ # Earth's orbital period in seconds
 
-$r_{earth} = 149.6e6 \times 1000$      # Earth's orbital radius in meters
-mass_sun = calculate_mass(T_earth, r_earth)
 
-Mass of Earth: ~5.97e24 kg
-
-Mass of Sun: ~1.99e30 kg
