@@ -475,3 +475,4 @@ else:
     print(f"Error: {gif_filename} was not created.")
 ```
 
+![Wave Animation](wave_animation.gif)
