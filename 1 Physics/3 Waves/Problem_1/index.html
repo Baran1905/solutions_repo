@@ -482,19 +482,19 @@ print(f"Plots saved in: {os.getcwd()}")
 <p><img alt="alt text" src="../image-8.png"/></p>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
-import imageio.v2 as imageio  # Use imageio.v2 to avoid deprecation warning
+import imageio.v2 as imageio  # Use imageio.v2 to avoid deprecation warnings
 import os
-from IPython.display import Image, display  # Import for inline display in Colab
+from IPython.display import Image, display  # For inline display in Colab
 
 # Wave parameters
-A = 1.0  # Amplitude
-lambda_ = 1.0  # Wavelength
+A = 1.0          # Amplitude
+lambda_ = 1.0    # Wavelength
 k = 2 * np.pi / lambda_  # Wave number
-f = 1.0  # Frequency
-omega = 2 * np.pi * f  # Angular frequency
-phi = 0.0  # Phase
+f = 1.0          # Frequency
+omega = 2 * np.pi * f    # Angular frequency
+phi = 0.0        # Initial phase
 
-# Grid setup
+# Grid settings
 x = np.linspace(-5, 5, 200)
 y = np.linspace(-5, 5, 200)
 X, Y = np.meshgrid(x, y)
@@ -502,7 +502,7 @@ X, Y = np.meshgrid(x, y)
 # Source position
 source = np.array([[0, 0]])
 
-# Function to compute displacement
+# Displacement calculation function
 def compute_displacement(X, Y, t):
     r = np.sqrt(X**2 + Y**2)
     eta = A * np.cos(k * r - omega * t + phi)
@@ -510,7 +510,7 @@ def compute_displacement(X, Y, t):
 
 # Create animation frames
 frames = []
-times = np.linspace(0, 1/f, 30)  # One period with 30 frames for smoother animation
+times = np.linspace(0, 1/f, 30)  # 30 frames for one wave period
 temp_files = []
 
 for t in times:
@@ -532,27 +532,27 @@ for t in times:
 
     frames.append(imageio.imread(filename))
 
-# Create GIF
+# Create GIF (loop=0 means infinite loop)
 gif_filename = 'wave_animation.gif'
-imageio.mimsave(gif_filename, frames, duration=0.1)  # 0.1 seconds per frame
+imageio.mimsave(gif_filename, frames, duration=0.1, loop=0)
 
 # Clean up temporary files
 for fname in temp_files:
     os.remove(fname)
 
-# Display the GIF inline in Colab
+# Display GIF inline in Colab
 display(Image(filename=gif_filename))
 
 # Print working directory for reference
-print(f"GIF saved in: {os.getcwd()}")
+print(f"GIF saved at: {os.getcwd()}")
 
-# Verify the GIF file exists
+# Verify if the GIF was created successfully
 if os.path.exists(gif_filename):
-    print(f"File size of {gif_filename}: {os.path.getsize(gif_filename)} bytes")
+    print(f"{gif_filename} file size: {os.path.getsize(gif_filename)} bytes")
 else:
     print(f"Error: {gif_filename} was not created.")
 </code></pre>
-<p><img alt="wawe animation" src="wave_animation.gif"/></p>
+<p><img alt="alt text" src="../wave_animation%20%281%29-1.gif"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
