@@ -475,4 +475,3 @@ else:
     print(f"Error: {gif_filename} was not created.")
 ```
 
-![alt text](file:///c%3A/Users/MONSTER/Downloads/wave_animation.gif)
