@@ -407,14 +407,7 @@ import matplotlib.pyplot as plt
 import imageio.v2 as imageio  # Use imageio.v2 to avoid deprecation warning
 import os
 from IPython.display import Image, display  # Import for inline display in Colab
-
-# Ensure interactive backend (optional, for static display if needed)
-try:
-    import matplotlib
-    matplotlib.use('TkAgg')  # Use TkAgg for interactive display; try 'Qt5Agg' if TkAgg fails
-except:
-    pass
-
+ 
 # Wave parameters
 A = 1.0  # Amplitude
 lambda_ = 1.0  # Wavelength
@@ -474,6 +467,12 @@ display(Image(filename=gif_filename))
 
 # Print working directory for reference
 print(f"GIF saved in: {os.getcwd()}")
+
+# Verify the GIF file exists
+if os.path.exists(gif_filename):
+    print(f"File size of {gif_filename}: {os.path.getsize(gif_filename)} bytes")
+else:
+    print(f"Error: {gif_filename} was not created.")
 ```
 
-![alt text](image-9.png)
+![alt text](file:///c%3A/Users/MONSTER/Downloads/wave_animation.gif)
