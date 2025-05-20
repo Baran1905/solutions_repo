@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Lorentz Force Simulation - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Lorentz Force Simulation";
         var mkdocs_page_input_path = "1 Physics/4 Electromagnetism/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,8 +70,22 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">4 Electromagnetism</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Lorentz Force Simulation</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-exploration-of-applications">1. Exploration of Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#role-of-fields">Role of Fields</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-simulating-particle-motion">2. Simulating Particle Motion</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-visualization">4. Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-discussion-of-results">5. Discussion of Results</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#6-extensions-and-suggestions">6. Extensions and Suggestions</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +177,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">4 Electromagnetism</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Lorentz Force Simulation</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +185,280 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="lorentz-force-simulation">Lorentz Force Simulation</h1>
+<p><strong>Problem 1:</strong> Simulating the Effects of the Lorentz Force</p>
+<h2 id="1-exploration-of-applications">1. Exploration of Applications</h2>
+<p>Real-World Systems Influenced by Lorentz Force
+Particle Accelerators: Charged particles are steered and accelerated by electric and magnetic fields.</p>
+<p>• <strong>Mass Spectrometers:</strong> Use Lorentz force to separate ions based on their mass-to-charge ratio.</p>
+<p>• <strong>Plasma Confinement (Tokamaks):</strong> Magnetic fields confine high-temperature plasmas for fusion research.</p>
+<p>• <strong>Cathode Ray Tubes:</strong> Electrons are deflected using electric and magnetic fields to produce images.</p>
+<h2 id="role-of-fields">Role of Fields</h2>
+<p>•<strong>Electric Field (𝐄):</strong> Exerts force in direction of field for positive charges (opposite for negative); accelerates particles.</p>
+<p>• <strong>Magnetic Field (𝐁):</strong> Causes perpendicular force, resulting in circular or helical motion (does no work).</p>
+<h2 id="2-simulating-particle-motion">2. Simulating Particle Motion</h2>
+<p><strong>Equations of Motion</strong></p>
+<div class="arithmatex">\[
+\vec{𝐹}= 𝑞(\vec{E}+\vec{𝑣}×\vec{𝐵})=m \frac{d\vec{v}}{dt}
+\]</div>
+<p>This becomes a system of differential equations, which we solve numerically.</p>
+<p><strong>Python Implementation</strong></p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Constants
+q = 1.6e-19   # charge (C)
+m = 9.1e-31   # mass (kg)
+
+# Time parameters
+dt = 1e-11
+steps = 10000
+
+def lorentz_force(v, E, B):
+    return q * (E + np.cross(v, B))
+
+def simulate_motion(v0, E, B):
+    r = np.zeros((steps, 3))
+    v = np.zeros((steps, 3))
+    r[0] = np.array([0.0, 0.0, 0.0])
+    v[0] = v0
+
+    for i in range(steps - 1):
+        a = lorentz_force(v[i], E, B) / m
+        v[i+1] = v[i] + a * dt
+        r[i+1] = r[i] + v[i+1] * dt
+
+    return r
+</code></pre>
+<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
+<pre><code class="language-python"># Initial conditions
+v0 = np.array([1e6, 0, 0])  # m/s
+
+# Fields
+B_uniform = np.array([0, 0, 1])  # Tesla
+E_uniform = np.array([0, 0, 0])  # V/m
+E_crossed = np.array([0, 1e3, 0])
+
+# Run Simulations
+trajectory_B = simulate_motion(v0, E_uniform, B_uniform)
+trajectory_EB = simulate_motion(v0, E_crossed, B_uniform)
+</code></pre>
+<h2 id="4-visualization">4. Visualization</h2>
+<pre><code class="language-python">def plot_trajectory(r, title="Trajectory", is_3d=False):
+    fig = plt.figure(figsize=(8,6))
+    if is_3d:
+        ax = fig.add_subplot(111, projection='3d')
+        ax.plot(r[:,0], r[:,1], r[:,2])
+        ax.set_zlabel('Z')
+    else:
+        ax = fig.add_subplot(111)
+        ax.plot(r[:,0], r[:,1])
+
+    ax.set_title(title)
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    plt.grid(True)
+    plt.show()
+
+plot_trajectory(trajectory_B, "Uniform Magnetic Field (Circular Motion)", is_3d=False)
+plot_trajectory(trajectory_EB, "Crossed Electric and Magnetic Fields (Drift Motion)", is_3d=False)
+</code></pre>
+<p><img alt="alt text" src="../image.png"/></p>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<h2 id="5-discussion-of-results">5. Discussion of Results</h2>
+<p>• Circular Motion in a uniform magnetic field corresponds to Larmor radius:</p>
+<div class="arithmatex">\[
+r_L = \frac{mv_\perp}{qB}
+\]</div>
+<p>The simulation confirms circular motion in the plane perpendicular to 𝐁.</p>
+<p>• Helical Motion occurs when there's a velocity component parallel to 𝐁.</p>
+<p>• E×B Drift is visible when electric and magnetic fields are crossed:</p>
+<div class="arithmatex">\[
+\vec v_{drift}=\frac {\vec{E}×\vec{B}}{B^2}
+\]</div>
+<h2 id="6-extensions-and-suggestions">6. Extensions and Suggestions</h2>
+<p>• <strong>Non-Uniform Magnetic Fields:</strong> e.g., magnetic mirrors.</p>
+<p>• <strong>Time-Varying Fields:</strong> Explore effects of RF fields.</p>
+<p>• <strong>Multiple Particles:</strong> Plasma collective behavior.</p>
+<p>• <strong>Relativistic Velocities:</strong> Modify equations for high-speed particles.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>This simulation illustrates the dynamic effects of the Lorentz force and its critical role in many physical systems. By varying field strengths and initial velocities, a range of motion from circular to drift trajectories can be observed, providing insight into real-world applications like cyclotrons and magnetic traps.</p>
+<p>🧮 Python Code (Euler Method + Matplotlib)</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+q = 1.0            # charge in C
+m = 0.001          # mass in kg
+dt = 0.001         # time step in seconds
+steps = 5000       # number of time steps
+
+def lorentz_force(v, E, B):
+    return q * (E + np.cross(v, B))
+
+def simulate(v0, E, B):
+    r = np.zeros((steps, 3))
+    v = np.zeros((steps, 3))
+    r[0] = [0.0, 0.0, 0.0]
+    v[0] = v0
+
+    for i in range(steps - 1):
+        a = lorentz_force(v[i], E, B) / m
+        v[i + 1] = v[i] + a * dt
+        r[i + 1] = r[i] + v[i + 1] * dt
+
+    return r
+</code></pre>
+<h2 id="scenario-visualizations">Scenario Visualizations</h2>
+<h3 id="1-uniform-magnetic-field">1️⃣  Uniform Magnetic Field</h3>
+<pre><code class="language-python">trajectory = simulate(
+    v0=np.array([10.0, 0.0, 0.0]),
+    E=np.array([0.0, 0.0, 0.0]),
+    B=np.array([0.0, 0.0, 1.0])
+)
+
+plt.plot(trajectory[:, 0], trajectory[:, 1])
+plt.title("Circular Motion in Uniform Magnetic Field")
+plt.xlabel("x (m)")
+plt.ylabel("y (m)")
+plt.axis('equal')
+plt.grid(True)
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<h3 id="2-uniform-parallel-vece-parallel-vecb">2️⃣ Uniform Parallel <span class="arithmatex">\(\vec{E} \parallel \vec{B}\)</span></h3>
+<pre><code class="language-python">trajectory = simulate(
+    v0=np.array([1.0, 0.0, 0.0]),
+    E=np.array([0.0, 0.0, 1.0]),
+    B=np.array([0.0, 0.0, 1.0])
+)
+
+plt.plot(trajectory[:, 2], trajectory[:, 0])
+plt.title("Spiraling Along Magnetic Field (E || B)")
+plt.xlabel("z (m)")
+plt.ylabel("x (m)")
+plt.grid(True)
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<h3 id="3-crossed-fields-vece-perp-vecb">3️⃣ Crossed Fields <span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span></h3>
+<pre><code class="language-python">trajectory = simulate(
+    v0=np.array([0.0, 0.0, 0.0]),
+    E=np.array([1.0, 0.0, 0.0]),
+    B=np.array([0.0, 0.0, 1.0])
+)
+
+plt.plot(trajectory[:, 0], trajectory[:, 1])
+plt.title("E x B Drift (Crossed Fields)")
+plt.xlabel("x (m)")
+plt.ylabel("y (m)")
+plt.axis('equal')
+plt.grid(True)
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-5.png"/> </p>
+<h3 id="4-no-fields-reference-case">4️⃣ No Fields (Reference Case)</h3>
+<pre><code class="language-python">trajectory = simulate(
+    v0=np.array([5.0, 5.0, 0.0]),
+    E=np.array([0.0, 0.0, 0.0]),
+    B=np.array([0.0, 0.0, 0.0])
+)
+
+plt.plot(trajectory[:, 0], trajectory[:, 1])
+plt.title("Straight-Line Motion (No Fields)")
+plt.xlabel("x (m)")
+plt.ylabel("y (m)")
+plt.grid(True)
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image-6.png"/></p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Parameters
+q = 1.0  # Charge (Coulomb)
+m = 0.001  # Mass (kg)
+B = np.array([0, 0, 1.0])  # Magnetic field (Tesla), along z-axis
+dt = 0.01  # Time step (s)
+t_max = 10.0  # Total simulation time (s)
+steps = int(t_max / dt)
+
+# Lorentz force acceleration function
+def lorentz_acceleration(v, q, m, B):
+    return (q / m) * np.cross(v, B)
+
+# Trajectory computation function
+def compute_trajectory(initial_v, initial_r):
+    r = np.zeros((steps, 3))  # Position vector
+    v = np.zeros((steps, 3))  # Velocity vector
+    r[0] = initial_r
+    v[0] = initial_v
+
+    for i in range(steps - 1):
+        a = lorentz_acceleration(v[i], q, m, B)
+        v[i + 1] = v[i] + a * dt
+        r[i + 1] = r[i] + v[i + 1] * dt
+
+    return r
+
+# Scenarios
+# 1. Circular trajectory
+initial_v_circle = np.array([1.0, 0.0, 0.0])  # Velocity in xy-plane
+initial_r_circle = np.array([0.0, 0.0, 0.0])
+traj_circle = compute_trajectory(initial_v_circle, initial_r_circle)
+
+# 2. Spiral trajectory (z-direction)
+initial_v_spiral = np.array([1.0, 0.0, 0.5])  # Added z-velocity
+initial_r_spiral = np.array([0.0, 0.0, 0.0])
+traj_spiral = compute_trajectory(initial_v_spiral, initial_r_spiral)
+
+# 3. Complex trajectory
+initial_v_complex = np.array([2.0, 1.0, 0.3])  # Higher velocity, slight z-component
+initial_r_complex = np.array([1.0, 0.0, 0.0])
+traj_complex = compute_trajectory(initial_v_complex, initial_r_complex)
+
+# Plotting
+fig = plt.figure(figsize=(15, 5))
+
+# Circular trajectory
+ax1 = fig.add_subplot(131, projection='3d')
+ax1.plot(traj_circle[:, 0], traj_circle[:, 1], traj_circle[:, 2], 'b-')
+ax1.set_title('Circular Trajectory')
+ax1.set_xlabel('X (m)')
+ax1.set_ylabel('Y (m)')
+ax1.set_zlabel('Z (m)')
+ax1.set_xlim([-2, 2])
+ax1.set_ylim([-2, 2])
+ax1.set_zlim([-2, 2])
+
+# Spiral trajectory
+ax2 = fig.add_subplot(132, projection='3d')
+ax2.plot(traj_spiral[:, 0], traj_spiral[:, 1], traj_spiral[:, 2], 'r-')
+ax2.set_title('Spiral Trajectory')
+ax2.set_xlabel('X (m)')
+ax2.set_ylabel('Y (m)')
+ax2.set_zlabel('Z (m)')
+ax2.set_xlim([-2, 2])
+ax2.set_ylim([-2, 2])
+ax2.set_zlim([-2, 2])
+
+# Complex trajectory
+ax3 = fig.add_subplot(133, projection='3d')
+ax3.plot(traj_complex[:, 0], traj_complex[:, 1], traj_complex[:, 2], 'g-')
+ax3.set_title('Complex Trajectory')
+ax3.set_xlabel('X (m)')
+ax3.set_ylabel('Y (m)')
+ax3.set_zlabel('Z (m)')
+ax3.set_xlim([-2, 2])
+ax3.set_ylim([-2, 2])
+ax3.set_zlim([-2, 2])
+
+plt.tight_layout()
+plt.savefig('lorentz_trajectories.png')
+</code></pre>
+<p><img alt="alt text" src="../image-7.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
