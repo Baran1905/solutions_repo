@@ -401,11 +401,13 @@ print(f"Plots saved in: {os.getcwd()}")
 
 ![alt text](image-6.png)
 
+## Pentagon Source Wave Visualization
+
 ![alt text](image-7.png)
 
 ![alt text](image-8.png)
 
-## Pentagon Source Wave Visualization
+
 
 ```python
 import numpy as np
