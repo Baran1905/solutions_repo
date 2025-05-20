@@ -308,65 +308,67 @@ plt.show()
 </table>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
 
 # Constants (in SI units, converted to km where needed)
 G = 6.67430e-11  # m^3 kg^-1 s^-2
 M_E = 5.972e24   # kg
 R_E = 6371       # km
-G_SI = G * 1e-9  # Convert G to km^3 kg^-1 s^-2 for consistency
+G_SI = G * 1e-9  # km^3 kg^-1 s^-2
 
 # Initial conditions
 h = 800          # Altitude in km
 r0 = R_E + h     # Distance from Earth's center (km)
-v0_list = np.arange(5, 13.1, 0.5)  # Velocities from 5 to 13 km/s in 0.5 km/s steps
-t = np.linspace(0, 3600, 1000)     # Time array: 1 hour, 1000 points (seconds)
+v0_list = np.arange(5, 13.1, 0.5)  # Velocities from 5 to 13 km/s
+t_span = (0, 3600)                 # 1 hour time span
+t_eval = np.linspace(*t_span, 1000)
 
 # Gravitational acceleration function
-def gravity(state, t, GM):
+def gravity(t, state, GM):
     x, y, vx, vy = state
     r = np.sqrt(x**2 + y**2)
     ax = -GM * x / r**3
     ay = -GM * y / r**3
     return [vx, vy, ax, ay]
 
+# Event function to stop integration at Earth's surface
+def hit_earth(t, state, GM):
+    x, y = state[0], state[1]
+    r = np.sqrt(x**2 + y**2)
+    return r - R_E
+hit_earth.terminal = True  # Stop the integration
+hit_earth.direction = -1   # Only trigger when approaching Earth
+
 # Set up the plot
 plt.figure(figsize=(10, 10))
-
-# Plot Earth as a blue circle
 earth_circle = plt.Circle((0, 0), R_E, color='blue', label='Earth')
 plt.gca().add_patch(earth_circle)
 
-# Simulate and plot trajectory for each initial velocity
-GM = G_SI * M_E  # GM in km^3 s^-2
+# Run simulation for each velocity
+GM = G_SI * M_E  # km^3/s^2
 for v0 in v0_list:
-    # Initial state: [x, y, vx, vy]
-    state0 = [r0, 0, 0, v0]  # Start at (r0, 0), velocity along +y
-    # Integrate the equations of motion
-    sol = odeint(gravity, state0, t, args=(GM,))
-    x, y = sol[:, 0], sol[:, 1]  # Extract positions
-    # Plot trajectory
-    plt.plot(x, y, label=f'v₀ = {v0} km/s')
+    state0 = [r0, 0, 0, v0]  # Initial position and velocity
+    sol = solve_ivp(gravity, t_span, state0, args=(GM,), t_eval=t_eval,
+                    events=hit_earth, rtol=1e-8, atol=1e-10)
+    x, y = sol.y[0], sol.y[1]
+    plt.plot(x, y, label=f'v₀ = {v0:.1f} km/s')
 
 # Plot initial position
 plt.plot([r0], [0], 'ro', label='Initial Position (800 km altitude)')
 
 # Customize plot
-plt.axis('equal')  # Equal scaling for x and y axes
+plt.axis('equal')
 plt.xlabel('X (km)')
 plt.ylabel('Y (km)')
 plt.title('Payload Trajectories Launched from 800 km Above Earth')
 plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.grid(True)
-
-# Set plot limits to show Earth and trajectories clearly
 plt.xlim(-20000, 20000)
 plt.ylim(-20000, 20000)
-
 plt.tight_layout()
 plt.show()
 </code></pre>
-<p><img alt="alt text" src="../image-8.png"/></p>
+<p><img alt="alt text" src="../image-9.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
