@@ -336,4 +336,4 @@ plt.savefig('lorentz_trajectories.png')
 
 ## Colab
 
-https://colab.research.google.com/drive/1GiyWi8MPaxeP3zpqU56K7HHK-oPbWQZn?usp=sharing
+[click to go colab](https://colab.research.google.com/drive/1GiyWi8MPaxeP3zpqU56K7HHK-oPbWQZn?usp=sharing)
