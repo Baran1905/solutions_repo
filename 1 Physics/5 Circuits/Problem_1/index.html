@@ -335,66 +335,7 @@ print("Triangle:", calculate_equivalent_resistance(G, 'A', 'B'))
 <p>Bridges mathematical theory and engineering practice.</p>
 </li>
 </ul>
-<p>```python
-import networkx as nx
-import matplotlib.pyplot as plt
-from IPython.display import Image, display
-import imageio
-import os</p>
-<h1 id="draw-and-save-the-circuit-diagram">Draw and save the circuit diagram</h1>
-<p>def draw_circuit(G, title, step):
-    pos = nx.spring_layout(G, seed=42)
-    labels = nx.get_edge_attributes(G, 'resistance')
-    nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=1500, font_weight='bold')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-    plt.title(title)</p>
-<pre><code>filename = f"circuit_step_{step}.png"
-plt.savefig(filename)
-plt.show()  # Show in Colab
-plt.clf()
-return filename
-</code></pre>
-<h1 id="combine-resistors-in-series-through-an-intermediate-node">Combine resistors in series (through an intermediate node)</h1>
-<p>def combine_series(G, u, v, middle):
-    r1 = G[u][middle]['resistance']
-    r2 = G[middle][v]['resistance']
-    r_eq = r1 + r2
-    G.add_edge(u, v, resistance=r_eq)
-    G.remove_node(middle)</p>
-<h1 id="combine-resistors-in-parallel">Combine resistors in parallel</h1>
-<p>def combine_parallel(G, u, v):
-    resistors = [d['resistance'] for a, b, d in G.edges(data=True) if (a == u and b == v) or (a == v and b == u)]
-    if len(resistors) &lt;= 1:
-        return
-    r_parallel = 1 / sum(1/r for r in resistors)
-    G.remove_edges_from([(a, b) for a, b, d in G.edges(data=True) if (a == u and b == v) or (a == v and b == u)])
-    G.add_edge(u, v, resistance=round(r_parallel, 2))</p>
-<h1 id="create-the-initial-resistor-network">Create the initial resistor network</h1>
-<p>def create_initial_circuit():
-    G = nx.Graph()
-    G.add_edge("START", "A", resistance=5)    # R1
-    G.add_edge("A", "B", resistance=10)       # R2
-    G.add_edge("B", "END", resistance=15)     # R3
-    G.add_edge("A", "END", resistance=20)     # R4
-    return G</p>
-<h1 id="execute-all-steps">Execute all steps</h1>
-<p>G = create_initial_circuit()
-filenames = []
-filenames.append(draw_circuit(G, "Step 1: Initial Circuit", 1))</p>
-<p>combine_series(G, "A", "END", "B")
-filenames.append(draw_circuit(G, "Step 2: R2 and R3 Combined (Series)", 2))</p>
-<p>combine_parallel(G, "A", "END")
-filenames.append(draw_circuit(G, "Step 3: Combine Parallel Branches (R23 || R4)", 3))</p>
-<p>combine_series(G, "START", "END", "A")
-filenames.append(draw_circuit(G, "Step 4: Final Equivalent Resistance", 4))</p>
 <h1 id="show-all-generated-images-in-colab">Show all generated images in Colab</h1>
-<p>for file in filenames:
-    display(Image(filename=file))
- ```</p>
-<p><img alt="alt text" src="../image.png"/></p>
-<p><img alt="alt text" src="../image-1.png"/></p>
-<p><img alt="alt text" src="../image-2.png"/></p>
-<p><img alt="alt text" src="../image-3.png"/></p>
 <h2 id="colab">Colab</h2>
 <p><a href="https://colab.research.google.com/drive/1vy_Iklm1AUIEgzHl_PPTnKtVMbs_9GzY?usp=sharing">click to go colab</a></p>
 </div>
