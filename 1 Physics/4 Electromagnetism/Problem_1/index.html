@@ -78,13 +78,9 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#2-simulating-particle-motion">2. Simulating Particle Motion</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration</a>
+<li class="toctree-l3"><a class="reference internal" href="#3-discussion-of-results">3. Discussion of Results</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#4-visualization">4. Visualization</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#5-discussion-of-results">5. Discussion of Results</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#6-extensions-and-suggestions">6. Extensions and Suggestions</a>
+<li class="toctree-l3"><a class="reference internal" href="#4-extensions-and-suggestions">4. Extensions and Suggestions</a>
 </li>
 </ul>
 </li>
@@ -203,70 +199,7 @@ Particle Accelerators: Charged particles are steered and accelerated by electric
 \]</div>
 <p>This becomes a system of differential equations, which we solve numerically.</p>
 <p><strong>Python Implementation</strong></p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-# Constants
-q = 1.6e-19   # charge (C)
-m = 9.1e-31   # mass (kg)
-
-# Time parameters
-dt = 1e-11
-steps = 10000
-
-def lorentz_force(v, E, B):
-    return q * (E + np.cross(v, B))
-
-def simulate_motion(v0, E, B):
-    r = np.zeros((steps, 3))
-    v = np.zeros((steps, 3))
-    r[0] = np.array([0.0, 0.0, 0.0])
-    v[0] = v0
-
-    for i in range(steps - 1):
-        a = lorentz_force(v[i], E, B) / m
-        v[i+1] = v[i] + a * dt
-        r[i+1] = r[i] + v[i+1] * dt
-
-    return r
-</code></pre>
-<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
-<pre><code class="language-python"># Initial conditions
-v0 = np.array([1e6, 0, 0])  # m/s
-
-# Fields
-B_uniform = np.array([0, 0, 1])  # Tesla
-E_uniform = np.array([0, 0, 0])  # V/m
-E_crossed = np.array([0, 1e3, 0])
-
-# Run Simulations
-trajectory_B = simulate_motion(v0, E_uniform, B_uniform)
-trajectory_EB = simulate_motion(v0, E_crossed, B_uniform)
-</code></pre>
-<h2 id="4-visualization">4. Visualization</h2>
-<pre><code class="language-python">def plot_trajectory(r, title="Trajectory", is_3d=False):
-    fig = plt.figure(figsize=(8,6))
-    if is_3d:
-        ax = fig.add_subplot(111, projection='3d')
-        ax.plot(r[:,0], r[:,1], r[:,2])
-        ax.set_zlabel('Z')
-    else:
-        ax = fig.add_subplot(111)
-        ax.plot(r[:,0], r[:,1])
-
-    ax.set_title(title)
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    plt.grid(True)
-    plt.show()
-
-plot_trajectory(trajectory_B, "Uniform Magnetic Field (Circular Motion)", is_3d=False)
-plot_trajectory(trajectory_EB, "Crossed Electric and Magnetic Fields (Drift Motion)", is_3d=False)
-</code></pre>
-<p><img alt="alt text" src="../image.png"/></p>
-<p><img alt="alt text" src="../image-1.png"/></p>
-<h2 id="5-discussion-of-results">5. Discussion of Results</h2>
+<h2 id="3-discussion-of-results">3. Discussion of Results</h2>
 <p>• Circular Motion in a uniform magnetic field corresponds to Larmor radius:</p>
 <div class="arithmatex">\[
 r_L = \frac{mv_\perp}{qB}
@@ -277,204 +210,170 @@ r_L = \frac{mv_\perp}{qB}
 <div class="arithmatex">\[
 \vec v_{drift}=\frac {\vec{E}×\vec{B}}{B^2}
 \]</div>
-<h2 id="6-extensions-and-suggestions">6. Extensions and Suggestions</h2>
+<h2 id="4-extensions-and-suggestions">4. Extensions and Suggestions</h2>
 <p>• <strong>Non-Uniform Magnetic Fields:</strong> e.g., magnetic mirrors.</p>
 <p>• <strong>Time-Varying Fields:</strong> Explore effects of RF fields.</p>
 <p>• <strong>Multiple Particles:</strong> Plasma collective behavior.</p>
 <p>• <strong>Relativistic Velocities:</strong> Modify equations for high-speed particles.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>This simulation illustrates the dynamic effects of the Lorentz force and its critical role in many physical systems. By varying field strengths and initial velocities, a range of motion from circular to drift trajectories can be observed, providing insight into real-world applications like cyclotrons and magnetic traps.</p>
-<p>🧮 Python Code (Euler Method + Matplotlib)</p>
-<pre><code class="language-python">import numpy as np
+<pre><code class="language-python"> import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 # Constants
-q = 1.0            # charge in C
-m = 0.001          # mass in kg
-dt = 0.001         # time step in seconds
-steps = 5000       # number of time steps
+q = 1.0       # Charge (C)
+m = 1.0       # Mass (kg)
+B = 1.0       # Magnetic field strength (T)
+E = np.array([0, 0, 0])  # Optional electric field (V/m)
 
-def lorentz_force(v, E, B):
-    return q * (E + np.cross(v, B))
+# Initial velocities
+v_perp = 1.0   # m/s, perpendicular to B
+v_para = 0.2   # m/s, parallel to B
 
-def simulate(v0, E, B):
-    r = np.zeros((steps, 3))
-    v = np.zeros((steps, 3))
-    r[0] = [0.0, 0.0, 0.0]
-    v[0] = v0
+# Time settings
+omega_c = q * B / m         # Cyclotron frequency
+T_c = 2 * np.pi / omega_c   # Cyclotron period
+dt = T_c / 1000             # Time step: small fraction of cyclotron period
+t_max = 10 * T_c            # Simulate 10 periods
+t = np.arange(0, t_max, dt)
 
-    for i in range(steps - 1):
-        a = lorentz_force(v[i], E, B) / m
-        v[i + 1] = v[i] + a * dt
-        r[i + 1] = r[i] + v[i + 1] * dt
+# Initialize position and velocity arrays
+r = np.zeros((len(t), 3))
+v = np.zeros((len(t), 3))
 
-    return r
-</code></pre>
-<h2 id="scenario-visualizations">Scenario Visualizations</h2>
-<h3 id="1-uniform-magnetic-field">1️⃣  Uniform Magnetic Field</h3>
-<pre><code class="language-python">trajectory = simulate(
-    v0=np.array([10.0, 0.0, 0.0]),
-    E=np.array([0.0, 0.0, 0.0]),
-    B=np.array([0.0, 0.0, 1.0])
-)
+# Initial conditions
+r[0] = [0, 0, 0]
+v[0] = [v_perp, 0, v_para]
 
-plt.plot(trajectory[:, 0], trajectory[:, 1])
-plt.title("Circular Motion in Uniform Magnetic Field")
-plt.xlabel("x (m)")
-plt.ylabel("y (m)")
-plt.axis('equal')
-plt.grid(True)
+# Magnetic field
+B_vec = np.array([0, 0, B])
+
+# Euler integration
+for i in range(1, len(t)):
+    F = q * (np.cross(v[i-1], B_vec) + E)
+    a = F / m
+    v[i] = v[i-1] + a * dt
+    r[i] = r[i-1] + v[i] * dt
+
+# Plotting the trajectory
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(r[:, 0], r[:, 1], r[:, 2], color='blue', label='Spiral Trajectory')
+ax.set_title("Charged Particle Spiral in Magnetic Field")
+ax.set_xlabel("x (m)")
+ax.set_ylabel("y (m)")
+ax.set_zlabel("z (m)")
+ax.legend()
+plt.tight_layout()
 plt.show()
 </code></pre>
-<p><img alt="alt text" src="../image-3.png"/></p>
-<h3 id="2-uniform-parallel-vece-parallel-vecb">2️⃣ Uniform Parallel <span class="arithmatex">\(\vec{E} \parallel \vec{B}\)</span></h3>
-<pre><code class="language-python">trajectory = simulate(
-    v0=np.array([1.0, 0.0, 0.0]),
-    E=np.array([0.0, 0.0, 1.0]),
-    B=np.array([0.0, 0.0, 1.0])
-)
+<p><img alt="alt text" src="../image-11.png"/></p>
+<pre><code class="language-python"> import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-plt.plot(trajectory[:, 2], trajectory[:, 0])
-plt.title("Spiraling Along Magnetic Field (E || B)")
-plt.xlabel("z (m)")
-plt.ylabel("x (m)")
-plt.grid(True)
+# Constants
+q = 1.0       # Charge (C)
+m = 1.0       # Mass (kg)
+B = 1.0       # Magnetic field (T)
+E = np.array([0, 0, 0])  # No electric field
+
+# Initial velocity: only perpendicular to B
+v_perp = 1.0  # m/s (circular motion in x-y plane)
+
+# Time settings based on cyclotron frequency
+omega_c = q * B / m           # Cyclotron frequency (rad/s)
+T_c = 2 * np.pi / omega_c     # Cyclotron period (s)
+dt = T_c / 1000               # Small timestep
+t_max = 3 * T_c               # Simulate 3 full circles
+t = np.arange(0, t_max, dt)
+
+# Initialize arrays
+r = np.zeros((len(t), 3))  # Position
+v = np.zeros((len(t), 3))  # Velocity
+
+# Initial conditions
+r[0] = [0, 0, 0]
+v[0] = [v_perp, 0, 0]  # x-direction velocity, B field is in z
+
+# Magnetic field vector
+B_vec = np.array([0, 0, B])
+
+# Euler integration
+for i in range(1, len(t)):
+    F = q * (np.cross(v[i-1], B_vec) + E)
+    a = F / m
+    v[i] = v[i-1] + a * dt
+    r[i] = r[i-1] + v[i] * dt
+
+# 3D plot
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(r[:, 0], r[:, 1], r[:, 2], color='green', label='Circular Trajectory')
+
+# Set 3D labels and title
+ax.set_title("Circular Motion in Magnetic Field (3D View)")
+ax.set_xlabel("x (m)")
+ax.set_ylabel("y (m)")
+ax.set_zlabel("z (m)")
+ax.legend()
+plt.tight_layout()
 plt.show()
 </code></pre>
-<p><img alt="alt text" src="../image-4.png"/></p>
-<h3 id="3-crossed-fields-vece-perp-vecb">3️⃣ Crossed Fields <span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span></h3>
-<pre><code class="language-python">trajectory = simulate(
-    v0=np.array([0.0, 0.0, 0.0]),
-    E=np.array([1.0, 0.0, 0.0]),
-    B=np.array([0.0, 0.0, 1.0])
-)
-
-plt.plot(trajectory[:, 0], trajectory[:, 1])
-plt.title("E x B Drift (Crossed Fields)")
-plt.xlabel("x (m)")
-plt.ylabel("y (m)")
-plt.axis('equal')
-plt.grid(True)
-plt.show()
-</code></pre>
-<p><img alt="alt text" src="../image-5.png"/> </p>
-<h3 id="4-no-fields-reference-case">4️⃣ No Fields (Reference Case)</h3>
-<pre><code class="language-python">trajectory = simulate(
-    v0=np.array([5.0, 5.0, 0.0]),
-    E=np.array([0.0, 0.0, 0.0]),
-    B=np.array([0.0, 0.0, 0.0])
-)
-
-plt.plot(trajectory[:, 0], trajectory[:, 1])
-plt.title("Straight-Line Motion (No Fields)")
-plt.xlabel("x (m)")
-plt.ylabel("y (m)")
-plt.grid(True)
-plt.show()
-</code></pre>
-<p><img alt="alt text" src="../image-6.png"/></p>
+<p><img alt="alt text" src="../image-12.png"/></p>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-# Generate data for a spiral trajectory
-theta = np.linspace(0, 4 * np.pi, 100)  # Angle from 0 to 4pi for 2 full spirals
-r = theta / (2 * np.pi)  # Radius increases linearly with angle
-x = r * np.cos(theta)    # x-coordinate
-y = r * np.sin(theta)    # y-coordinate
-z = theta / (2 * np.pi)  # z-coordinate increases with theta
+# Constants
+q = 1.0       # Charge (C)
+m = 1.0       # Mass (kg)
+B = 1.0       # Magnetic field strength (T)
+E = np.array([1.0, 0.0, 0.0])  # Electric field in x-direction (V/m)
 
-# Create 3D plot
+# Derived quantities
+omega_c = q * B / m          # Cyclotron frequency
+T_c = 2 * np.pi / omega_c    # Cyclotron period
+
+# Time settings
+dt = T_c / 1000
+t_max = 5 * T_c              # simulate 5 periods
+t = np.arange(0, t_max, dt)
+
+# Initialize position and velocity
+r = np.zeros((len(t), 3))
+v = np.zeros((len(t), 3))
+
+# Initial condition: velocity perpendicular to B (in x-y plane)
+v[0] = [0.0, 1.0, 0.0]  # Initial velocity in y-direction
+r[0] = [0.0, 0.0, 0.0]
+
+# Magnetic field
+B_vec = np.array([0.0, 0.0, B])
+
+# Euler integration
+for i in range(1, len(t)):
+    F = q * (E + np.cross(v[i-1], B_vec))
+    a = F / m
+    v[i] = v[i-1] + a * dt
+    r[i] = r[i-1] + v[i] * dt
+
+# 3D plot
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111, projection='3d')
-ax.plot(x, y, z, 'r-', label='Spiral Trajectory')  # Red line to match the image
+ax.plot(r[:, 0], r[:, 1], r[:, 2], label='E×B Drift Trajectory', color='purple')
 
-# Set labels and title
-ax.set_xlabel('x (m)')
-ax.set_ylabel('y (m)')
-ax.set_zlabel('z (m)')
-ax.set_title('Spiral Trajectory')
-
-# Set axis limits to match the image (-2 to 2 range)
-ax.set_xlim(-2, 2)
-ax.set_ylim(-2, 2)
-ax.set_zlim(-2, 2)
-
-# Add a legend
+# Labels and title
+ax.set_title("Charged Particle Drift in E and B Fields")
+ax.set_xlabel("x (m)")
+ax.set_ylabel("y (m)")
+ax.set_zlabel("z (m)")
 ax.legend()
-
-# Show plot
+plt.tight_layout()
 plt.show()
 </code></pre>
-<p><img alt="alt text" src="../image-8.png"/></p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-# Generate data for a circular trajectory
-theta = np.linspace(0, 2 * np.pi, 100)  # Angle from 0 to 2pi for one full circle
-radius = 1.0  # Fixed radius for the circle
-x = radius * np.cos(theta)  # x-coordinate
-y = radius * np.sin(theta)  # y-coordinate
-z = np.zeros_like(theta)    # z-coordinate fixed at 0 for a 2D circle in 3D space
-
-# Create 3D plot
-fig = plt.figure(figsize=(8, 6))
-ax = fig.add_subplot(111, projection='3d')
-ax.plot(x, y, z, 'b-', label='Circular Trajectory')  # Blue line to match the image
-
-# Set labels and title
-ax.set_xlabel('x (m)')
-ax.set_ylabel('y (m)')
-ax.set_zlabel('z (m)')
-ax.set_title('Circular Trajectory')
-
-# Set axis limits to match the image (-2 to 2 range)
-ax.set_xlim(-2, 2)
-ax.set_ylim(-2, 2)
-ax.set_zlim(-2, 2)
-
-# Add a legend
-ax.legend()
-
-# Show plot
-plt.show()
-</code></pre>
-<p><img alt="alt text" src="../image-9.png"/></p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-# Generate data for a complex trajectory
-t = np.linspace(0, 3 * np.pi, 150)  # Parameter t from 0 to 3pi for a longer path
-radius = 1.0 + 0.3 * np.sin(2 * t)  # Radius varies sinusoidally for complexity
-x = radius * np.cos(t)  # x-coordinate with varying radius
-y = radius * np.sin(t)  # y-coordinate with varying radius
-z = 1.5 - t / (2 * np.pi) + 0.2 * np.sin(3 * t)  # z decreases with t, with oscillation
-
-# Create 3D plot
-fig = plt.figure(figsize=(8, 6))
-ax = fig.add_subplot(111, projection='3d')
-ax.plot(x, y, z, 'g-', label='Complex Trajectory')  # Green line to match the image
-
-# Set labels and title
-ax.set_xlabel('x (m)')
-ax.set_ylabel('y (m)')
-ax.set_zlabel('z (m)')
-ax.set_title('Complex Trajectory')
-
-# Set axis limits to match the image (-2 to 2 range)
-ax.set_xlim(-2, 2)
-ax.set_ylim(-2, 2)
-ax.set_zlim(-2, 2)
-
-# Add a legend
-ax.legend()
-
-# Show plot
-plt.show()
-</code></pre>
-<p><img alt="alt text" src="../image-10.png"/></p>
+<p><img alt="alt text" src="../image-13.png"/></p>
 <h2 id="colab">Colab</h2>
 <p><a href="https://colab.research.google.com/drive/1GiyWi8MPaxeP3zpqU56K7HHK-oPbWQZn?usp=sharing">click to go colab</a></p>
 </div>
