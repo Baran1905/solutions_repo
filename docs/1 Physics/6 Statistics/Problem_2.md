@@ -197,6 +197,8 @@ plt.grid(True)
 plt.show()
 ```
 
+![alt text](image-5.png)
+
 ### 🔍 Convergence Commentary
 
 * ⚠️ Converges more slowly and less consistently.
