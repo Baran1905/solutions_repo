@@ -132,3 +132,7 @@ The Central Limit Theorem plays a crucial role in:
 
  • Portfolio returns often aggregate many random variables; CLT supports assuming normality of average returns.
 
+
+## Colab
+
+[click to go colab](https://colab.research.google.com/drive/1H1s6IJrp5omfFYEXDpSsYTHA0CQ0fR7Z?usp=sharing)
