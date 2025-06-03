@@ -42,27 +42,25 @@ $$
 \frac MN ≈ \frac π4 ⇒ π ≈ 4⋅ \frac MN
 $$
 
- 
+## Circle-Based Monte Carlo Method (Python Code)
 
-### 💻 Simulation Code (Python)
-
- ```python
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Step 1: Estimate π using Monte Carlo sampling inside a unit circle
 def estimate_pi_circle(n_points):
     x = np.random.uniform(-1, 1, n_points)
     y = np.random.uniform(-1, 1, n_points)
-    inside = x**2 + y**2 <= 1
-    pi_est = 4 * np.sum(inside) / n_points
-    return pi_est, x, y, inside
-```
-### 📊 Visualization
-```python
-def plot_circle_points(x, y, inside):
+    inside_circle = x**2 + y**2 <= 1
+    pi_estimate = 4 * np.sum(inside_circle) / n_points
+    return pi_estimate, x, y, inside_circle
+
+# Step 2: Visualize the sampled points
+def plot_circle_points(x, y, inside_circle):
     plt.figure(figsize=(6, 6))
-    plt.scatter(x[inside], y[inside], s=1, color='blue', label='Inside Circle')
-    plt.scatter(x[~inside], y[~inside], s=1, color='red', label='Outside Circle')
+    plt.scatter(x[inside_circle], y[inside_circle], s=1, color='blue', label='Inside Circle')
+    plt.scatter(x[~inside_circle], y[~inside_circle], s=1, color='red', label='Outside Circle')
     plt.gca().set_aspect('equal')
     plt.title("Monte Carlo Circle Method for π")
     plt.xlabel("x")
@@ -70,29 +68,44 @@ def plot_circle_points(x, y, inside):
     plt.legend()
     plt.grid(True)
     plt.show()
- ```
-### 📈 Convergence Analysis
-```python
- 
-sample_sizes = [100, 500, 1000, 5000, 10000, 50000, 100000]
-estimates = []
 
-for n in sample_sizes:
-    pi, *_ = estimate_pi_circle(n)
-    estimates.append(pi)
+# Step 3: Convergence plot for different sample sizes
+def plot_convergence(sample_sizes):
+    estimates = []
+    for n in sample_sizes:
+        pi, *_ = estimate_pi_circle(n)
+        estimates.append(pi)
 
-plt.plot(sample_sizes, estimates, marker='o', label='Estimated π')
-plt.axhline(np.pi, color='green', linestyle='--', label='True π')
-plt.xscale('log')
-plt.xlabel("Number of Points (log scale)")
-plt.ylabel("Estimated π")
-plt.title("Convergence of π Estimate (Circle Method)")
- plt.legend()
- plt.grid(True)
- plt.show()
+    plt.figure(figsize=(8, 5))
+    plt.plot(sample_sizes, estimates, marker='o', label='Estimated π')
+    plt.axhline(np.pi, color='green', linestyle='--', label='True π')
+    plt.xscale('log')
+    plt.xlabel("Number of Points (log scale)")
+    plt.ylabel("Estimated π")
+    plt.title("Convergence of π Estimate (Circle Method)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+# Step 4: Example usage
+if __name__ == "__main__":
+    # Estimate π with a fixed number of points
+    pi_estimate, x, y, inside = estimate_pi_circle(10000)
+    print(f"Estimated π: {pi_estimate:.6f}")
+
+    # Show point distribution
+    plot_circle_points(x, y, inside)
+
+    # Convergence over increasing sample sizes
+    sample_sizes = [100, 500, 1000, 5000, 10000, 50000, 100000]
+    plot_convergence(sample_sizes)
+
 ```
 
-![alt text](image-4.png)
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
 
 ### 🔍 Convergence Commentary
 * ✅ Converges quickly and consistently.
@@ -142,62 +155,85 @@ Where:
 𝑑
 L≤d**
 
-### 💻 Simulation Code (Python)
+## Buffon’s Needle Monte Carlo Method (Python Code)
 
 ```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Step 1: Estimate π using Buffon's Needle
 def estimate_pi_buffon(n_drops, L=1.0, d=2.0):
-    x_center = np.random.uniform(0, d/2, n_drops)
-    theta = np.random.uniform(0, np.pi/2, n_drops)
-    crosses = x_center <= (L/2) * np.sin(theta)
-    C = np.sum(crosses)
-    if C == 0:
-        return None, x_center, theta, crosses
-    pi_est = (2 * L * n_drops) / (d * C)
-    return pi_est, x_center, theta, crosses
-```
+    assert L <= d, "Needle length must be less than or equal to the distance between lines"
 
-### 📊 Visualization
+    x_center = np.random.uniform(0, d / 2, n_drops)  # distance from center to closest line
+    theta = np.random.uniform(0, np.pi / 2, n_drops)  # angle from vertical
+    crosses = x_center <= (L / 2) * np.sin(theta)  # crossing condition
+    num_crosses = np.sum(crosses)
 
-```python
+    if num_crosses == 0:
+        return None, x_center, theta, crosses  # avoid division by zero
+
+    pi_estimate = (2 * L * n_drops) / (d * num_crosses)
+    return pi_estimate, x_center, theta, crosses
+
+# Step 2: Visualize needles and lines
 def plot_buffon_needles(x_center, theta, crosses, L=1.0, d=2.0):
     plt.figure(figsize=(8, 6))
+    y_spacing = 0.05  # vertical separation for drawing each needle
+
     for i, (x, angle, cross) in enumerate(zip(x_center, theta, crosses)):
-        x0 = x - (L/2) * np.cos(angle)
-        x1 = x + (L/2) * np.cos(angle)
-        y = i * 0.05
+        x0 = x - (L / 2) * np.cos(angle)
+        x1 = x + (L / 2) * np.cos(angle)
+        y = i * y_spacing
         color = 'blue' if cross else 'red'
         plt.plot([x0, x1], [y, y], color=color, linewidth=0.5)
+
     for i in range(5):
         plt.axvline(i * d, color='gray', linestyle='--')
+
     plt.title("Buffon's Needle Simulation")
     plt.xlabel("x")
-    plt.ylabel("Needle Drops")
+    plt.ylabel("Needle index (scaled)")
     plt.grid(True)
     plt.show()
+ 
+# Step 3: Plot convergence
+def plot_buffon_convergence(sample_sizes, L=1.0, d=2.0):
+    estimates = []
+
+    for n in sample_sizes:
+        pi, *_ = estimate_pi_buffon(n, L, d)
+        estimates.append(pi if pi else np.nan)
+
+    plt.figure(figsize=(8, 5))
+    plt.plot(sample_sizes, estimates, marker='o', label="Estimated π")
+    plt.axhline(np.pi, color='green', linestyle='--', label="True π")
+    plt.xscale('log')
+    plt.xlabel("Number of Needle Drops (log scale)")
+    plt.ylabel("Estimated π")
+    plt.title("Convergence of π Estimate (Buffon’s Needle)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+# Step 4: Example usage
+if __name__ == "__main__":
+    # Estimate π with 10,000 needle drops
+    pi_est, x_center, theta, crosses = estimate_pi_buffon(10000)
+    print(f"Estimated π: {pi_est:.6f}" if pi_est else "No crossings, can't estimate π.")
+
+    # Show needle layout
+    plot_buffon_needles(x_center, theta, crosses)
+
+    # Show convergence behavior
+    sample_sizes = [100, 500, 1000, 5000, 10000, 20000]
+    plot_buffon_convergence(sample_sizes)
 ```
 
-### 📈 Convergence Analysis
+![alt text](image-8.png)
 
-```python
-sample_sizes = [100, 500, 1000, 5000, 10000, 20000]
-buffon_estimates = []
+![alt text](image-9.png)
 
-for n in sample_sizes:
-    pi, *_ = estimate_pi_buffon(n)
-    buffon_estimates.append(pi if pi else np.nan)
-
-plt.plot(sample_sizes, buffon_estimates, marker='o', label="Estimated π")
-plt.axhline(np.pi, color='green', linestyle='--', label="True π")
-plt.xscale('log')
-plt.xlabel("Number of Needles (log scale)")
-plt.ylabel("Estimated π")
-plt.title("Convergence of π Estimate (Buffon’s Needle)")
-plt.legend()
-plt.grid(True)
-plt.show()
-```
-
-![alt text](image-5.png)
 
 ### 🔍 Convergence Commentary
 
