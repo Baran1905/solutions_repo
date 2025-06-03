@@ -47,62 +47,54 @@ $$
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-
-# Step 1: Estimate π using Monte Carlo sampling inside a unit circle
+ 
 def estimate_pi_circle(n_points):
     x = np.random.uniform(-1, 1, n_points)
     y = np.random.uniform(-1, 1, n_points)
     inside_circle = x**2 + y**2 <= 1
-    pi_estimate = 4 * np.sum(inside_circle) / n_points
-    return pi_estimate, x, y, inside_circle
-
-# Step 2: Visualize the sampled points
+    return 4 * np.sum(inside_circle) / n_points, x, y, inside_circle
+ 
 def plot_circle_points(x, y, inside_circle):
-    plt.figure(figsize=(6, 6))
+    total_points = len(x)
+    points_inside = np.sum(inside_circle)
+    ratio = points_inside / total_points
+    pi_estimate = 4 * ratio
+    error = abs(np.pi - pi_estimate)
+    error_pct = 100 * error / np.pi
+
+    plt.figure(figsize=(7, 7))
+    plt.scatter(x[~inside_circle], y[~inside_circle], s=1, color='gray', label='Outside Circle')
     plt.scatter(x[inside_circle], y[inside_circle], s=1, color='blue', label='Inside Circle')
-    plt.scatter(x[~inside_circle], y[~inside_circle], s=1, color='red', label='Outside Circle')
+
     plt.gca().set_aspect('equal')
-    plt.title("Monte Carlo Circle Method for π")
+    plt.title(f"Monte Carlo Estimation of π\n{total_points} Points: π ≈ {pi_estimate:.6f}")
     plt.xlabel("x")
     plt.ylabel("y")
-    plt.legend()
-    plt.grid(True)
+    plt.legend(loc="upper left")
+
+    # Info box inside plot bounds
+    stats_text = (
+        f"Points inside: {points_inside}\n"
+        f"Total points: {total_points}\n"
+        f"Ratio: {ratio:.6f}\n"
+        f"π estimate: {pi_estimate:.6f}\n"
+        f"Error: {error:.6f} ({error_pct:.4f}%)"
+    )
+    # Position it in the bottom left corner
+    plt.annotate(stats_text,
+                 xy=(-0.95, -1.2),
+                 fontsize=10,
+                 bbox=dict(boxstyle="round", fc="white", ec="black"))
+
+    plt.tight_layout()
     plt.show()
-
-# Step 3: Convergence plot for different sample sizes
-def plot_convergence(sample_sizes):
-    estimates = []
-    for n in sample_sizes:
-        pi, *_ = estimate_pi_circle(n)
-        estimates.append(pi)
-
-    plt.figure(figsize=(8, 5))
-    plt.plot(sample_sizes, estimates, marker='o', label='Estimated π')
-    plt.axhline(np.pi, color='green', linestyle='--', label='True π')
-    plt.xscale('log')
-    plt.xlabel("Number of Points (log scale)")
-    plt.ylabel("Estimated π")
-    plt.title("Convergence of π Estimate (Circle Method)")
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
-# Step 4: Example usage
-if __name__ == "__main__":
-    # Estimate π with a fixed number of points
-    pi_estimate, x, y, inside = estimate_pi_circle(10000)
-    print(f"Estimated π: {pi_estimate:.6f}")
-
-    # Show point distribution
-    plot_circle_points(x, y, inside)
-
-    # Convergence over increasing sample sizes
-    sample_sizes = [100, 500, 1000, 5000, 10000, 50000, 100000]
-    plot_convergence(sample_sizes)
+pi_estimate, x, y, inside = estimate_pi_circle(5000)
+plot_circle_points(x, y, inside)
+ 
 
 ```
 
-![alt text](image-6.png)
+![alt text](image-10.png)
 
 ![alt text](image-7.png)
 
@@ -170,27 +162,25 @@ L≤d**
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-
-# Step 1: Estimate π using Buffon's Needle
+ 
 def estimate_pi_buffon(n_drops, L=1.0, d=2.0):
-    assert L <= d, "Needle length must be less than or equal to the distance between lines"
+    x_center = np.random.uniform(0, d / 2, n_drops)
+    theta = np.random.uniform(0, np.pi / 2, n_drops)
+    crosses = x_center <= (L / 2) * np.sin(theta)
+    C = np.sum(crosses)
 
-    x_center = np.random.uniform(0, d / 2, n_drops)  # distance from center to closest line
-    theta = np.random.uniform(0, np.pi / 2, n_drops)  # angle from vertical
-    crosses = x_center <= (L / 2) * np.sin(theta)  # crossing condition
-    num_crosses = np.sum(crosses)
-
-    if num_crosses == 0:
+    if C == 0:
         return None, x_center, theta, crosses  # avoid division by zero
 
-    pi_estimate = (2 * L * n_drops) / (d * num_crosses)
-    return pi_estimate, x_center, theta, crosses
-
-# Step 2: Visualize needles and lines
+    pi_est = (2 * L * n_drops) / (d * C)
+    return pi_est, x_center, theta, crosses
+ 
 def plot_buffon_needles(x_center, theta, crosses, L=1.0, d=2.0):
-    plt.figure(figsize=(8, 6))
-    y_spacing = 0.05  # vertical separation for drawing each needle
+    n = len(x_center)
+    y_spacing = 0.02  # more compact for large n
 
+    plt.figure(figsize=(8, 6))
+ 
     for i, (x, angle, cross) in enumerate(zip(x_center, theta, crosses)):
         x0 = x - (L / 2) * np.cos(angle)
         x1 = x + (L / 2) * np.cos(angle)
@@ -198,49 +188,44 @@ def plot_buffon_needles(x_center, theta, crosses, L=1.0, d=2.0):
         color = 'blue' if cross else 'red'
         plt.plot([x0, x1], [y, y], color=color, linewidth=0.5)
 
-    for i in range(5):
-        plt.axvline(i * d, color='gray', linestyle='--')
+    # Draw vertical lines (floor lines)
+    for k in range(int(4 * d)):
+        plt.axvline(k * d, color='gray', linestyle='--', linewidth=0.5)
+
+    # Stats box
+    C = np.sum(crosses)
+    pi_est = (2 * L * n) / (d * C) if C > 0 else float('inf')
+    error = abs(np.pi - pi_est)
+    error_pct = 100 * error / np.pi
+    ratio = C / n
+
+    stats_text = (
+        f"Needles dropped: {n}\n"
+        f"Crossings: {C}\n"
+        f"Crossing ratio: {ratio:.6f}\n"
+        f"π estimate: {pi_est:.6f}\n"
+        f"Error: {error:.6f} ({error_pct:.4f}%)"
+    )
+
+    plt.annotate(stats_text,
+                 xy=(0.05, 0.95),
+                 xycoords='axes fraction',
+                 fontsize=10,
+                 verticalalignment='top',
+                 bbox=dict(boxstyle="round", facecolor="white", edgecolor="black"))
 
     plt.title("Buffon's Needle Simulation")
     plt.xlabel("x")
     plt.ylabel("Needle index (scaled)")
     plt.grid(True)
+    plt.tight_layout()
     plt.show()
+pi_est, x_center, theta, crosses = estimate_pi_buffon(500)
+plot_buffon_needles(x_center, theta, crosses)
  
-# Step 3: Plot convergence
-def plot_buffon_convergence(sample_sizes, L=1.0, d=2.0):
-    estimates = []
-
-    for n in sample_sizes:
-        pi, *_ = estimate_pi_buffon(n, L, d)
-        estimates.append(pi if pi else np.nan)
-
-    plt.figure(figsize=(8, 5))
-    plt.plot(sample_sizes, estimates, marker='o', label="Estimated π")
-    plt.axhline(np.pi, color='green', linestyle='--', label="True π")
-    plt.xscale('log')
-    plt.xlabel("Number of Needle Drops (log scale)")
-    plt.ylabel("Estimated π")
-    plt.title("Convergence of π Estimate (Buffon’s Needle)")
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
-# Step 4: Example usage
-if __name__ == "__main__":
-    # Estimate π with 10,000 needle drops
-    pi_est, x_center, theta, crosses = estimate_pi_buffon(10000)
-    print(f"Estimated π: {pi_est:.6f}" if pi_est else "No crossings, can't estimate π.")
-
-    # Show needle layout
-    plot_buffon_needles(x_center, theta, crosses)
-
-    # Show convergence behavior
-    sample_sizes = [100, 500, 1000, 5000, 10000, 20000]
-    plot_buffon_convergence(sample_sizes)
 ```
 
-![alt text](image-8.png)
+![alt text](image-11.png)
 
 ![alt text](image-9.png)
 
