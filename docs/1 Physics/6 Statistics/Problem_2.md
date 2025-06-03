@@ -221,3 +221,5 @@ $O(1/ \sqrt{n})$ but with higher variability.
 ## Colab
 
 [click to go colab](https://colab.research.google.com/drive/1No0tWRqJLa2ODBW3PA3rwMwCgmtP2CQm?usp=sharing)
+
+
